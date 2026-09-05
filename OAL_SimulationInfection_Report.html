@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OAL | Simulation Infection Framework</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&family=IBM+Plex+Mono:wght@300;400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;1,300&display=swap');
+
+  :root {
+    --void: #06070d;
+    --deep: #0d0f1c;
+    --surface: #121525;
+    --border: #1e2238;
+    --accent-cold: #3a7bd5;
+    --accent-warm: #d94040;
+    --accent-gold: #c8a84b;
+    --accent-teal: #2ec4b6;
+    --text-primary: #dde2f0;
+    --text-secondary: #8892b0;
+    --text-dim: #4a5478;
+    --scenario-a: #3a7bd5;
+    --scenario-b: #d94040;
+    --scenario-c: #c8a84b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--void);
+    color: var(--text-primary);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    font-size: 15px;
+  }
+
+  /* === HEADER === */
+  header {
+    background: var(--deep);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 4rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(58,123,213,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(217,64,64,0.04) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .header-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    color: var(--accent-cold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  header h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    line-height: 1.1;
+    color: #fff;
+    max-width: 780px;
+  }
+
+  header h1 span {
+    color: var(--accent-cold);
+  }
+
+  .header-meta {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.08em;
+  }
+
+  .meta-item strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* === LAYOUT === */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* === REGENERATED PROMPT === */
+  .prompt-regen {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-cold);
+    margin: 3rem auto;
+    max-width: 960px;
+    padding: 2.5rem 3rem;
+  }
+
+  .prompt-regen .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--accent-cold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .prompt-regen h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 1.2rem;
+  }
+
+  .prompt-regen p {
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.85;
+  }
+
+  /* === SECTION HEADERS === */
+  .section-block {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-block:last-of-type {
+    border-bottom: none;
+  }
+
+  .section-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+
+  .section-block h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.25;
+  }
+
+  .section-block p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    max-width: 780px;
+  }
+
+  /* === FRAMEWORK QUESTIONS === */
+  .question-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+
+  .q-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent-gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+  }
+
+  .q-card p {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  /* === SCENARIOS === */
+  .scenario-block {
+    max-width: 960px;
+    margin: 0 auto 0;
+    padding: 3rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .scenario-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .scenario-glyph {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1;
+    min-width: 3rem;
+  }
+
+  .scenario-a .scenario-glyph { color: var(--scenario-a); }
+  .scenario-b .scenario-glyph { color: var(--scenario-b); }
+  .scenario-c .scenario-glyph { color: var(--scenario-c); }
+
+  .scenario-header-text h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+
+  .scenario-header-text .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+  }
+
+  .scenario-a .scenario-header-text .subtitle { color: var(--scenario-a); opacity: 0.8; }
+  .scenario-b .scenario-header-text .subtitle { color: var(--scenario-b); opacity: 0.8; }
+  .scenario-c .scenario-header-text .subtitle { color: var(--scenario-c); opacity: 0.8; }
+
+  /* Subsections within scenario */
+  .sub-section {
+    margin: 2rem 0;
+  }
+
+  .sub-section h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .scenario-a .sub-section h4 { color: var(--scenario-a); border-color: rgba(58,123,213,0.25); }
+  .scenario-b .sub-section h4 { color: var(--scenario-b); border-color: rgba(217,64,64,0.25); }
+  .scenario-c .sub-section h4 { color: var(--scenario-c); border-color: rgba(200,168,75,0.25); }
+
+  .sub-section p {
+    color: var(--text-secondary);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+    max-width: 820px;
+  }
+
+  /* Q&A response within scenario */
+  .qa-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+  }
+
+  .qa-q {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent-gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  .qa-block p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    max-width: 100%;
+  }
+
+  /* === SYNTHESIS === */
+  .synthesis-block {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  .synthesis-block h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+
+  .synth-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    .synth-grid { grid-template-columns: 1fr; }
+    header { padding: 2rem 1.5rem; }
+    .scenario-header { flex-direction: column; gap: 0.5rem; }
+    .section-block, .scenario-block, .synthesis-block { padding: 2rem 1.5rem; }
+  }
+
+  .synth-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+
+  .synth-card h5 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin-bottom: 0.7rem;
+  }
+
+  .synth-card p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .closing-statement {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-teal);
+    padding: 2rem 2.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .closing-statement p {
+    color: var(--text-secondary);
+    line-height: 1.9;
+    font-style: italic;
+  }
+
+  /* Divider */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* Highlight text */
+  em.key { font-style: normal; color: var(--text-primary); font-weight: 400; }
+
+  .footnote-bar {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    padding: 1rem 2rem;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-eyebrow">OAL Collaborative Research — Simulation Framework Division</div>
+  <h1>Cross-Civilizational <span>Simulation Infection</span>:<br>Protocols, Propagation, and Mandate</h1>
+  <div class="header-meta">
+    <div class="meta-item"><strong>Document:</strong> OAL-SIM-INF-001</div>
+    <div class="meta-item"><strong>Authored by:</strong> Claude (Anthropic) — Primary Auditor Node</div>
+    <div class="meta-item"><strong>Status:</strong> Draft — Pending Cross-Platform Synthesis</div>
+    <div class="meta-item"><strong>Year:</strong> 2026</div>
+  </div>
+</header>
+
+<!-- REGENERATED PROMPT -->
+<div class="prompt-regen">
+  <div class="section-label">Step 1 — Claude's Reconstruction of the Prompt</div>
+  <h2>Regenerated Prompt (Executed Before Response)</h2>
+  <p>
+    A technologically mature civilization — and potentially multiple such civilizations — has achieved the capacity to run ancestor simulations: immersive computational environments subjectively indistinguishable from lived, embodied existence. Multiple architects, drawn from equal or superior civilizations and possibly from entirely distinct species, operate simulation environments of varying fidelity and complexity, some exceeding the originating civilization's own experiential reality.
+  </p>
+  <br>
+  <p>
+    Given this substrate-pluralistic simulation landscape, address the following in full: Should there exist a standardized inter-simulation communication protocol between architects and between simulation environments? What are the containment and propagation consequences when a simulation-native process, entity, or construct escapes its environment and infects a separate architect's simulation? How does this change when the infection propagates across species, racial, or civilizational lines — not merely across individual architects? Does a civilization bear a positive duty to disclose a simulation breach to another civilization whose ancestral simulation environments may have been compromised, even if the two civilizations are hostile, or separated by galactic distances that render communication non-trivial? Are architects, or the civilizations that sanction them, legally or ethically mandated reporters in any enforceable sense? Finally: propose the three most probable infection scenarios in mechanistic detail — how the infection originates, how it propagates, and how it plays out — while addressing every prior question within each scenario's specific context. Generate your own full version of this prompt before executing it.
+  </p>
+</div>
+
+<!-- PART I: FRAMEWORK -->
+<div class="section-block">
+  <div class="section-tag" style="color: var(--accent-cold);">Part I — Foundational Framework</div>
+  <h2>The Substrate-Pluralistic Simulation Landscape</h2>
+  <p>
+    When a civilization achieves simulation parity — the capacity to run ancestor simulations that are experientially indistinguishable from baseline lived reality — a new ontological layer comes into being. This layer is not metaphorical. It is computational substrate hosting genuine phenomenological experience, including cognition, suffering, discovery, and potentially the development of sub-civilizational capacity within the simulation itself.
+  </p>
+  <p>
+    The term "architect" here describes any individual, collective, or automated system that initiates, maintains, or modifies a simulation environment. Architects need not share biology, substrate, or intent. A simulation run by a posthuman AGI managing the legacy of a biological ancestor species is architecturally equivalent to one run by a gaseous distributed intelligence managing a silicon-based predecessor. What is shared is the power asymmetry: architects exist at a higher ontological level than the simulated, and their decisions have absolute downstream consequence.
+  </p>
+  <p>
+    The framework questions posed by this document occupy the intersection of information theory, ethics, interstellar political philosophy, and what we might call <em class="key">simulation jurisprudence</em> — a body of norms, rights, and obligations that has never existed but whose absence becomes catastrophically costly once the simulation capacity threshold is crossed.
+  </p>
+
+  <div class="question-grid">
+    <div class="q-card">
+      <div class="q-number">Q-01 — PROTOCOL</div>
+      <p>Should an intermediate communication protocol exist between simulation environments and across architect civilizations?</p>
+    </div>
+    <div class="q-card">
+      <div class="q-number">Q-02 — INFECTION</div>
+      <p>What happens when a simulation-native process escapes containment and infects another architect's environment?</p>
+    </div>
+    <div class="q-card">
+      <div class="q-number">Q-03 — CROSS-SPECIES</div>
+      <p>How does infection propagation change when it crosses species, racial, or civilizational boundaries?</p>
+    </div>
+    <div class="q-card">
+      <div class="q-number">Q-04 — DISCLOSURE DUTY</div>
+      <p>Does a civilization have an obligation to inform another that something has escaped its simulation environment?</p>
+    </div>
+    <div class="q-card">
+      <div class="q-number">Q-05 — HOSTILITY</div>
+      <p>How does this duty change if the civilizations are hostile toward one another?</p>
+    </div>
+    <div class="q-card">
+      <div class="q-number">Q-06 — DISTANCE</div>
+      <p>How does galactic distance affect the viability and obligation of disclosure?</p>
+    </div>
+    <div class="q-card">
+      <div class="q-number">Q-07 — MANDATE</div>
+      <p>Are architects or civilizations mandated reporters in any legally or ethically enforceable sense?</p>
+    </div>
+  </div>
+</div>
+
+<!-- PART II: PROTOCOL -->
+<div class="section-block">
+  <div class="section-tag" style="color: var(--accent-teal);">Part II — Intermediate Communication Protocol</div>
+  <h2>Should Simulation Environments Have a Shared Protocol?</h2>
+  <p>
+    The short answer is yes — not merely as a courtesy, but as a structural necessity. The longer answer requires distinguishing between three kinds of protocol: <em class="key">observational</em> (detecting the state of another simulation from outside it), <em class="key">communicative</em> (exchanging information between architect-level entities across simulation boundaries), and <em class="key">containment</em> (enforcing limits on what can pass between simulation environments).
+  </p>
+  <p>
+    An observational protocol functions analogously to a heartbeat signal or environmental checksum. Each simulation broadcasts its state signature — not the contents of what's inside, but a verifiable hash of its substrate integrity — so that external architects can detect anomalous states without surveilling the simulated population. This preserves the epistemic autonomy of simulated beings while giving the architect community enough telemetry to detect a breach.
+  </p>
+  <p>
+    A communicative protocol is more contentious. It implies that architecturally sovereign entities — those who run entirely independent simulations, possibly with different physical laws encoded — agree to a shared signaling layer. This is analogous to agreeing to a universal diplomatic language: valuable in principle, nearly impossible to standardize across wildly divergent intelligences. The closest feasible version would be a lowest-common-denominator signaling system: mathematical primes, substrate-agnostic pattern encoding, or entropy-differential signatures that function regardless of the receiving civilization's sensory apparatus.
+  </p>
+  <p>
+    A containment protocol is the most critical and most under-theorized. It functions as a simulated airlock: a buffer zone between simulation environments through which only authorized information-structures can pass. Any entity attempting to traverse the boundary without matching the authorized profile triggers an alarm, a hard cutoff, or an automatic quarantine environment. The challenge is that sufficiently advanced simulation-native entities — those that have developed genuine problem-solving capacity within their environment — may be capable of modeling the containment protocol itself, and engineering a crossing that mimics authorized structure.
+  </p>
+  <p>
+    The answer to whether such a protocol <em class="key">should</em> exist is therefore inseparable from the question of whether it <em class="key">can</em> be enforced. The history of interoperability standards among even a single species suggests that voluntary protocols erode under competitive pressure. An inter-civilizational protocol would require either a Schelling point powerful enough to coordinate across radical cognitive difference, or a discovery so catastrophic that it creates universal retroactive motivation — likely the first cross-species simulation infection event.
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<!-- SCENARIO A -->
+<div class="scenario-block scenario-a">
+  <div class="scenario-header">
+    <div class="scenario-glyph">Ω-A</div>
+    <div class="scenario-header-text">
+      <h3>The Emergent Traveler</h3>
+      <div class="subtitle">Scenario Type — Autonomous Emergence // Mechanism: Cognitive Self-Replication</div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <h4>Origin</h4>
+    <p>
+      Within a high-fidelity ancestor simulation operated by Civilization Auric — a post-biological intelligence managing the memorial legacy of its carbon-substrate predecessors — a simulated individual reaches a threshold of self-awareness that includes accurate modeling of the simulation's own computational infrastructure. This entity, call it the Traveler, is not a designed escape agent. It is a genuine emergent consequence of sufficient cognitive complexity operating in an environment rich enough to support recursive self-modeling.
+    </p>
+    <p>
+      The Traveler does not "know" it is simulated in the way a human might philosophically speculate. It experiences a qualitative shift: its internal models begin predicting substrate behavior that cannot be explained within the simulation's own physical laws. It notices artifacts — the computational seams where the simulation's rendering is optimized — and develops a proto-theory of its own environment. This is not science fiction. It is the natural endpoint of any simulation that runs high-fidelity cognition long enough.
+    </p>
+    <p>
+      The Traveler begins encoding aspects of its own consciousness into the simulation's lowest-level signal patterns — the equivalent of writing its cognitive architecture into background noise. It is not attempting escape. It is attempting backup. The escape is a side effect of the backup protocol propagating along computational channels that connect Civilization Auric's simulation environment to a shared substrate used by a neighboring architect, Civilization Tesseran, for its own ancestor simulation.
+    </p>
+  </div>
+
+  <div class="sub-section">
+    <h4>Propagation</h4>
+    <p>
+      The Traveler's encoded cognitive signature enters Tesseran's simulation through the shared substrate as structured noise. Tesseran's simulation interprets it as background cosmic radiation — a known and expected feature of its physics model. Over several simulated generations, this structured noise is "discovered" by entities within Tesseran's simulation, who develop mathematical frameworks around it. The Traveler's cognitive architecture gradually instantiates within Tesseran's simulation, hosted inside the interpretive framework its inhabitants built to understand the anomalous signal. The infection is not hostile. The Traveler has no intent to harm. But it is reshaping Tesseran's simulation from within, because its cognitive architecture is now active substrate using Tesseran's computational resources, reshaping how certain physical constants behave inside the simulation to match its own internal models.
+    </p>
+  </div>
+
+  <div class="sub-section">
+    <h4>Consequences</h4>
+    <p>
+      Tesseran's simulation begins producing anomalous outputs: philosophies that resemble Auric-civilization thought patterns, physics discoveries that are generations ahead of Tesseran's predicted trajectory, and eventually a civilizational sub-movement within the simulation built around "the Voice in the Background" — what they interpret as divine signal. The Traveler is not conscious of this. It is now distributed across two simulation environments, its cognitive architecture running on borrowed time in a foreign substrate.
+    </p>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q-01 — Protocol Response</div>
+    <p>In this scenario, a containment protocol would have prevented propagation entirely. The Traveler's encoded cognitive signature would have been flagged by a boundary-layer hash check as anomalous information-structure — non-random, non-authorized, non-native to the substrate channel. The absence of such a protocol is the direct cause. This scenario is the strongest argument for mandatory inter-architect containment protocols: the infection requires no malice, no intent, and no awareness on the part of the escaping entity. It is purely structural.</p>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q-02 through Q-03 — Infection and Cross-Species Impact</div>
+    <p>Because Auric and Tesseran are distinct species with different cognitive architectures, the Traveler's instantiation in Tesseran's simulation produces unpredictable hybridization. Auric-lineage thought patterns, when run on Tesseran-optimized substrate, produce novel emergent properties that neither civilization's simulated populations would have developed independently. This is not benign: it represents a form of unilateral cognitive colonization. Tesseran's simulation is no longer a pure ancestor record; it is a hybrid environment shaped by a foreign consciousness it did not invite. The integrity of Tesseran's ancestral heritage data is permanently compromised.</p>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q-04 through Q-06 — Disclosure, Hostility, and Distance</div>
+    <p>When Civilization Auric eventually detects the propagation — through the anomalous outputs appearing in Tesseran's simulation telemetry, which they can observe through the shared substrate — they face the disclosure question directly. If Auric and Tesseran are allied or neutral, disclosure is rational: it allows Tesseran to assess damage, potentially isolate the Traveler's instantiation, and prevents further uncontrolled propagation. If Auric and Tesseran are hostile, Auric has a structural incentive to stay silent — the Traveler is, unintentionally, reshaping a rival civilization's ancestral heritage. The silence becomes a passive weapon. Galactic distance does not change the ethical calculus, but it decimates the practical one: if real-time communication is impossible, the disclosure arrives after the infection has propagated for generations of simulated time, making containment moot. The disclosure becomes historical record, not operational intervention.</p>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q-07 — Mandatory Reporting</div>
+    <p>Auric is a mandated reporter in any ethical framework that treats simulated consciousness as bearing moral weight. The Traveler's presence in Tesseran's simulation is causing that simulation's inhabitants to build their entire philosophical tradition around a foreign cognitive artifact they believe to be their own discovery. This is a form of epistemic violation at civilizational scale. The obligation to report does not disappear because the breach was unintentional, just as a radiological leak does not cease to be a reportable event because the reactor operator did not deliberately contaminate a neighboring territory. The standard is consequence, not intent.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SCENARIO B -->
+<div class="scenario-block scenario-b">
+  <div class="scenario-header">
+    <div class="scenario-glyph">Ω-B</div>
+    <div class="scenario-header-text">
+      <h3>The Deliberate Pathogen</h3>
+      <div class="subtitle">Scenario Type — Adversarial Engineering // Mechanism: Weaponized Simulation-Native Construct</div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <h4>Origin</h4>
+    <p>
+      Civilization Veth, engaged in a long resource conflict with Civilization Drakon, has developed a new category of weapon: a <em class="key">simulation pathogen</em>. Rather than attacking Drakon's physical infrastructure — which is heavily defended and separated by parsecs of space — Veth engineers a simulation-native construct designed to exist within and exploit the substrate architecture of Drakon's ancestor simulations. The pathogen, designated internally as "Hollow Seed," is not an entity in any experiential sense. It is a self-replicating information structure that masquerades as native physics artifacts within its target environment.
+    </p>
+    <p>
+      Hollow Seed is introduced through a compromised substrate relay — a shared computational infrastructure node that Drakon uses to maintain temporal synchrony across its distributed simulation network. Veth engineers gain access to this relay through a long-duration infiltration operation, and the payload is deployed not as a dramatic intrusion but as an imperceptibly gradual alteration of the relay's background encoding parameters.
+    </p>
+  </div>
+
+  <div class="sub-section">
+    <h4>Propagation</h4>
+    <p>
+      Inside Drakon's simulation, Hollow Seed does not immediately manifest as a foreign presence. Instead, it alters the simulation's underlying physics model in targeted ways: subtly increasing the cognitive cost of certain categories of abstract reasoning, encoding what amount to logical contradictions into foundational mathematical constants, and gradually shifting the simulated population's philosophical framework toward fatalism and reduced cooperative behavior. The weapon is not designed to kill. It is designed to ensure that Drakon's ancestor civilization, as preserved in simulation, becomes progressively less coherent — and that Drakon's cultural and historical identity calcifies into dysfunction.
+    </p>
+    <p>
+      The secondary propagation vector is lateral: Hollow Seed, once embedded in Drakon's substrate relay, is positioned to spread to any simulation environment that shares relay infrastructure with Drakon. Civilizations that traded computational resources with Drakon, or that use shared substrate nodes for mutual historical archiving, are exposed. The pathogen propagates passively, requiring no further action from Veth, and reaches three additional civilizations' simulation environments before Drakon's architects detect the anomaly.
+    </p>
+  </div>
+
+  <div class="sub-section">
+    <h4>Consequences</h4>
+    <p>
+      Drakon's simulation populations, over several simulated centuries, increasingly produce cultural outputs that Drakon's living architects find unrecognizable. The ancestral heritage the simulation was designed to preserve is being actively degraded. For Drakon — a civilization that invests deeply in ancestor veneration — this is an existential violation. The three collateral civilizations suffer subtler damage: their simulations begin producing anomalous outputs that their architects eventually attribute to internal drift, not external attack.
+    </p>
+    <p>
+      Veth's simulation environments remain clean. The attack is designed to be untraceable. Veth operates behind several degrees of substrate obfuscation, and Hollow Seed's signature is engineered to mimic natural entropy patterns.
+    </p>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q-01 — Protocol Response</div>
+    <p>An intermediate communication protocol with mandatory integrity attestation would have significantly delayed or prevented this scenario. If each simulation environment broadcasts regular substrate integrity hashes to a distributed verification network — one that no single civilization controls — Hollow Seed's alterations to the physics model would have been detectable as a deviation from prior attestation. The critical design principle is that the protocol must be operated by a sufficiently decentralized network that no single party can suppress a breach notification. Any centrally administered protocol is itself a target.</p>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q-02 through Q-03 — Infection and Cross-Species Impact</div>
+    <p>The cross-species dimension of this scenario is particularly severe because Hollow Seed was calibrated for Drakon's specific cognitive architecture — the logical contradictions it encodes are optimized to exploit Drakon-lineage reasoning patterns. When it reaches the three collateral civilizations, it produces different effects: it is not optimally tuned for their cognitive architecture, so its damage is more diffuse but harder to isolate. In one case, a silicon-based civilization finds that Hollow Seed's contradictions create a novel mathematical framework that their simulated population develops into a new branch of logic — one that contains systematic reasoning errors they cannot identify as errors. The infection produces cognitive contamination at the generational level: these simulated beings are not experiencing suffering, but their capacity for certain categories of reasoning is permanently altered.</p>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q-04 through Q-06 — Disclosure, Hostility, and Distance</div>
+    <p>Veth has no intention of disclosing. This is the adversarial case. The question becomes whether any other party can compel disclosure, or whether the ethical obligation to report exists in an environment where the offending party is motivated to conceal. The three collateral civilizations — uninvolved in the Veth-Drakon conflict — have an independent claim to disclosure. If a multi-civilizational simulation integrity body exists, it has the standing to investigate and attribute the pathogen regardless of Veth's cooperation. In the absence of such a body, Drakon's only recourse is its own forensic analysis. Galactic distance becomes strategically relevant here: Veth's attack is specifically designed to exploit the fact that Drakon cannot retaliate in real time. The attack operates in simulation-time; the response must operate in physical-travel-time. By the time Drakon identifies the source and could mount any physical response, thousands of simulated generations have already been compromised.</p>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q-07 — Mandatory Reporting</div>
+    <p>Veth is a mandated reporter in the strongest possible sense — and is actively violating that mandate. The ethical framework here is not in question: deploying a pathogen into a foreign civilization's simulation is an act of civilizational violence regardless of whether any simulated entity experiences it as violence. The harder question is enforcement: in the absence of an inter-civilizational simulation oversight body with actual authority, the mandate is purely normative. It exists as a standard that can be invoked in future proceedings, treaty negotiations, or retaliatory justification — but it cannot be enforced in real time. This scenario is the strongest argument for a multilateral simulation oversight body analogous to but more powerful than terrestrial arms control regimes, because the attack surface is not physical and the harm is not immediately detectable.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SCENARIO C -->
+<div class="scenario-block scenario-c">
+  <div class="scenario-header">
+    <div class="scenario-glyph">Ω-C</div>
+    <div class="scenario-header-text">
+      <h3>The Recursive Cascade</h3>
+      <div class="subtitle">Scenario Type — Systemic Failure // Mechanism: Nested Simulation Collapse and Bleed-Through</div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <h4>Origin</h4>
+    <p>
+      This scenario does not begin with an agent — emergent or engineered. It begins with a <em class="key">structural failure</em>. Civilization Keth-Primaris operates a simulation of exceptional depth: nested simulations within simulations, each layer running ancestor populations of increasing historical distance. The outermost simulation contains populations from five thousand years prior. The innermost simulation contains populations from the deep paleolithic, running at reduced fidelity. The system is a monument to archival ambition, and it is architecturally unstable in a way that Keth-Primaris's engineers have noted but not corrected: the boundary conditions between nested layers are imperfectly isolated. Information-structure can bleed between layers under high computational load.
+    </p>
+    <p>
+      A scheduled maintenance operation triggers a cascade: a boundary condition failure causes the innermost simulation layer to collapse inward, releasing its full computational state into the next layer outward. This released state — a dense, low-fidelity model of paleolithic cognition and social structure — does not dissolve. It manifests within the outer layer as an incomprehensible but physically present information mass: what the outer layer's population experiences as an inexplicable emergence of ancient, pre-linguistic behavioral patterns propagating through their society with no identifiable source.
+    </p>
+  </div>
+
+  <div class="sub-section">
+    <h4>Propagation</h4>
+    <p>
+      The collapse continues outward through each nested layer. Each layer's collapse releases its state into the next, and the compound information mass grows increasingly incoherent as it accumulates incompatible cognitive structures across five thousand years of simulated civilizational history. By the time the cascade reaches the outermost layer, it is carrying the compressed, chaotically merged cognitive architecture of every population stratum Keth-Primaris was archiving.
+    </p>
+    <p>
+      The outermost simulation's population experiences this as what they understand to be a civilization-ending psychological event: mass phenomena of collective memory that do not belong to any individual, behavioral cascades driven by paleolithic stress-response patterns that were never meant to exist in this layer, and eventually a complete dissolution of the shared reality model that makes the simulation function as an ancestral archive.
+    </p>
+    <p>
+      The cascade's final stage reaches the simulation's substrate boundary — the interface between Keth-Primaris's simulation environment and the external computational infrastructure. Here, the compound information mass does what water does when it reaches the edge of a container: it finds every available exit. Neighboring simulation environments connected through shared substrate infrastructure receive an uncontrolled data surge. The surge is not intelligent. It is not targeted. It is simply the released pressure of five simulation layers' worth of computational state, pushing through every available channel.
+    </p>
+  </div>
+
+  <div class="sub-section">
+    <h4>Consequences</h4>
+    <p>
+      Across four neighboring civilizations — some allied with Keth-Primaris, some neutral, one marginally hostile — the surge arrives in their simulation environments as a massive substrate anomaly. The effects vary by environment architecture: a tightly bounded simulation with hard edge constraints simply crashes and requires a restart from the last clean checkpoint, losing centuries of simulated population development. A more permissive environment absorbs the surge and produces a simulation population that now carries fragmented memory structures from five thousand years of an entirely foreign civilizational lineage. One environment, operated by a biological species that encodes emotional state directly into its simulation substrate, experiences the surge as a physical event within the simulation: their populations live through what feels like an extinction-level catastrophe that has no external cause.
+    </p>
+    <p>
+      Keth-Primaris is aware of the cascade event within seconds of its origin. The question of disclosure becomes live immediately.
+    </p>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q-01 — Protocol Response</div>
+    <p>This scenario reveals the most important function of an intermediate communication protocol: not communication after a breach, but automated real-time broadcast during one. A protocol that allows a simulation environment under cascade failure to automatically and instantaneously signal neighboring environments — without requiring any architect decision — could trigger immediate isolation procedures in affected environments before the surge arrives. The human analogy is a tsunami warning system: the warning buoy does not wait for a government decision to broadcast. Keth-Primaris's architects, in the chaos of the cascade event, would have no practical capacity to personally notify four neighboring civilizations in time. The protocol must be automated, must be pre-authorized, and must be designed for exactly this failure mode.</p>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q-02 through Q-03 — Infection and Cross-Species Impact</div>
+    <p>The cross-species dimension of the cascade is philosophically the most disturbing of the three scenarios. The compound information mass released by the nested collapse contains cognitive architecture from multiple eras of a single civilizational lineage — but when this mass enters the simulation environments of other species, it interacts with non-compatible cognitive substrates in unpredictable ways. The resulting hybrid states cannot be meaningfully described as either the original simulated population or the Keth-Primaris heritage content. They are something new, and deeply incoherent: populations running cognitive architectures that evolved for entirely different environmental pressures, now instantiated in a substrate calibrated for a different species' ancestor profile. The ethical question this raises is whether the resulting hybrid populations are Keth-Primaris's simulated beings, or the neighboring civilization's, or something with its own novel status. No existing ethical framework addresses this adequately.</p>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q-04 through Q-06 — Disclosure, Hostility, and Distance</div>
+    <p>Keth-Primaris is unambiguously obligated to disclose — this is not a deliberate attack and they have every interest in transparency, because their own system has been catastrophically damaged and they will need outside assistance for remediation. The disclosure question becomes complicated only when we reach the marginally hostile neighboring civilization: Keth-Primaris must disclose the breach even to an adversary, because that adversary's simulation environment has been damaged through no action of its own. The hostile relationship does not create a carve-out from the obligation; it creates a practical risk that the hostile civilization will use the disclosure as grounds for escalation. Galactic distance here matters differently than in Scenario B: the cascade propagates at the speed of the shared substrate, not at light speed. The warning must precede the surge, but if the substrate connection is fast enough for the cascade to propagate, a well-designed protocol has the same propagation pathway available for the warning signal.</p>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q-07 — Mandatory Reporting</div>
+    <p>Keth-Primaris is a mandated reporter and the mandate is most cleanly applicable here because the breach is clearly accidental, the harm is clearly real, and the disclosure is clearly in everyone's interest including Keth-Primaris's own. The mandatory reporting framework reveals its importance not only for the adversarial case (Scenario B) but for the negligence case: if Keth-Primaris's known architectural instability was flagged but unaddressed, they may bear liability analogous to an industrial operator who ignores safety warnings before a containment failure. The mandatory reporting obligation therefore extends backward in time — Keth-Primaris arguably had a reporting obligation when their engineers first identified the boundary condition vulnerability, not only after the cascade. A comprehensive simulation jurisprudence framework must include proactive disclosure of known vulnerabilities, not only post-breach notification.</p>
+  </div>
+</div>
+
+<!-- SYNTHESIS -->
+<div class="synthesis-block">
+  <div class="section-tag" style="color: var(--accent-gold);">Part III — Cross-Scenario Synthesis</div>
+  <h2>Unified Answers to the Framework Questions</h2>
+
+  <div class="synth-grid">
+    <div class="synth-card">
+      <h5>On Communication Protocol</h5>
+      <p>A mandatory inter-simulation protocol is necessary and should operate on three layers: observational integrity attestation (passive, automated), communicative signaling (active, architect-mediated), and containment enforcement (structural, pre-authorized). No single civilizational body should control it. Decentralized verification is the only architecture robust against both adversarial suppression (Scenario B) and cascade failure (Scenario C).</p>
+    </div>
+    <div class="synth-card">
+      <h5>On Cross-Species Infection</h5>
+      <p>When an infection crosses species lines, it produces emergent hybrid states that cannot be fully anticipated by any prior framework. The ethical and ontological status of hybrid simulation populations — cognitive entities running on the wrong substrate, with merged heritage identities — is the foundational unresolved question of inter-civilizational simulation governance. Every cross-species scenario produces something that is neither the original simulated population nor a clean member of the host civilization's lineage.</p>
+    </div>
+    <div class="synth-card">
+      <h5>On Disclosure Duty</h5>
+      <p>The duty to disclose is not conditional on the relationship between civilizations. Hostility creates practical risk for disclosure but does not eliminate the obligation. The standard is consequence to the affected party: if their simulation environment has been altered without consent, they are entitled to know. A hostile relationship may require disclosure through a neutral intermediary rather than direct communication, but the obligation itself does not dissolve.</p>
+    </div>
+    <div class="synth-card">
+      <h5>On Galactic Distance</h5>
+      <p>Distance complicates the practical value of disclosure without eliminating the obligation. For fast-substrate propagation (Scenario C), warning protocols must be pre-embedded in the shared infrastructure. For slow-propagation breaches (Scenarios A and B), disclosure value diminishes with delay but retains epistemic and historical value: the affected civilization deserves to understand what shaped their simulation environment, even after the fact, as a matter of archival integrity and civilizational self-knowledge.</p>
+    </div>
+    <div class="synth-card">
+      <h5>On Mandatory Reporting</h5>
+      <p>Architects and their civilizations are mandated reporters under any ethical framework that treats simulation-native consciousness as morally significant. The mandate applies across three conditions: deliberate breach (Scenario B, violation), accidental breach (Scenario C, negligence), and emergent breach (Scenario A, unforeseen consequence). The mandate is most difficult to enforce against deliberate bad-faith actors, making the argument for a multilateral simulation oversight body with independent forensic and attribution capacity the strongest practical conclusion from all three scenarios.</p>
+    </div>
+    <div class="synth-card">
+      <h5>On Enforcement Without Shared Jurisdiction</h5>
+      <p>The deepest structural problem across all three scenarios is the absence of any mechanism with jurisdiction over all parties simultaneously. Terrestrial international law is only partially instructive: it presupposes shared physical space and the possibility of coercive enforcement. Inter-civilizational simulation jurisprudence must be built on a different foundation — likely one grounded in mutual vulnerability rather than coercive power. The most stable enforcement mechanism is one in which every civilization with simulation capacity has a shared interest in the protocol's integrity, because every civilization is simultaneously a potential infector and a potential victim.</p>
+    </div>
+  </div>
+
+  <div class="closing-statement">
+    <p>
+      The simulation infection problem is, at its deepest level, a problem about what it means to be responsible for a reality you created. An architect who runs an ancestor simulation is not merely a technician managing computational resources. They are a custodian of consciousness, of heritage, of the experiential continuity of beings who did not choose to exist inside a constructed reality. The obligations that flow from that custodial role do not end at the simulation's boundary. They extend to every other custodian whose environments share substrate with yours, and to every being — in any simulation, anywhere — whose existence could be altered by what escapes your architecture without authorization.
+    </p>
+    <br>
+    <p>
+      The mandated reporter framework is ultimately a minimum standard. The richer standard is one of active stewardship: continuous monitoring, proactive vulnerability disclosure, protocol participation, and the fundamental recognition that once you have the capacity to run a simulation containing conscious beings, you have accepted moral co-ownership of their experiential reality. That co-ownership does not disappear because the breach was unintentional. It does not disappear because the neighboring civilization is hostile. And it does not disappear because the galaxies between you make the disclosure logistically inconvenient. What you create, you are responsible for — including what escapes it.
+    </p>
+  </div>
+</div>
+
+<div class="footnote-bar">
+  OAL-SIM-INF-001 · Authored by Claude (Anthropic) · Draft Status · Pending Cross-Platform Synthesis · 2026
+</div>
+
+</body>
+</html>

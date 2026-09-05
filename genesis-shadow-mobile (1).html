@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Genesis Shadow Mobile</title>
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --surface: #131823;
+      --surface-2: #1a2130;
+      --surface-3: #222c3f;
+      --text: #edf2ff;
+      --muted: #aab6d3;
+      --faint: #6f7b98;
+      --accent: #ff5a5f;
+      --accent-soft: rgba(255,90,95,.14);
+      --line: rgba(255,255,255,.09);
+      --ok: #73d2a8;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #090b10 0%, #0d1220 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .wrap {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 16px 14px 96px;
+    }
+    .hero {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      margin: -16px -14px 16px;
+      padding: max(14px, env(safe-area-inset-top)) 14px 14px;
+      backdrop-filter: blur(10px);
+      background: rgba(11,13,18,.82);
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .dot {
+      width: 10px; height: 10px; border-radius: 999px; background: var(--accent);
+      box-shadow: 0 0 14px rgba(255,90,95,.85);
+      animation: pulse 1.8s infinite;
+    }
+    h1 {
+      margin: 10px 0 6px;
+      font-size: clamp(28px, 7vw, 40px);
+      line-height: 1.03;
+      letter-spacing: -.03em;
+    }
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .summary {
+      margin: 14px 0 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+    nav {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0 22px;
+    }
+    .navbtn {
+      text-decoration: none;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: var(--shadow);
+    }
+    .navbtn small { color: var(--faint); display: block; margin-top: 3px; }
+    .icon {
+      width: 38px; height: 38px; display: grid; place-items: center;
+      border-radius: 12px; background: var(--accent-soft); color: var(--accent); flex: 0 0 auto;
+      font-weight: 700;
+    }
+    section {
+      margin: 0 0 18px;
+      scroll-margin-top: 112px;
+    }
+    .card {
+      background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+    .kicker {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 8px;
+    }
+    h2 {
+      margin: 0 0 4px;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+    .section-sub { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+    h3 {
+      margin: 18px 0 8px;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+    p { margin: 0 0 12px; color: var(--text); font-size: 16px; }
+    .muted { color: var(--muted); }
+    .list { display: grid; gap: 12px; }
+    .item {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    details { width: 100%; }
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    .qid {
+      font-size: 11px;
+      line-height: 1.1;
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: .08em;
+      min-width: 64px;
+    }
+    .qtext { flex: 1; font-size: 15px; color: var(--text); }
+    .plus { color: var(--faint); font-size: 22px; line-height: 1; }
+    details[open] .plus { color: var(--accent); }
+    .answer {
+      border-top: 1px solid var(--line);
+      padding: 0 14px 14px;
+      color: var(--muted);
+      font-size: 15px;
+      white-space: pre-line;
+    }
+    .scenario {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,.025);
+    }
+    .tag {
+      display: inline-block;
+      padding: 5px 8px;
+      border-radius: 999px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid rgba(255,90,95,.22);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+    }
+    .toplink {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--ok);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .footer {
+      color: var(--faint);
+      text-align: center;
+      font-size: 12px;
+      margin-top: 18px;
+    }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+    @media (min-width: 700px) {
+      nav { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 420px) {
+      .summary { grid-template-columns: 1fr; }
+      .qid { min-width: 58px; }
+      summary { padding: 12px; }
+      .card { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="top">
+    <div class="hero">
+      <div class="eyebrow"><span class="dot"></span> OAL tabletop simulation active</div>
+      <h1>Operation Genesis Shadow</h1>
+      <p class="sub">A mobile-friendly rewrite of the attached tabletop exercise so the full scenario is easier to read on a phone.</p>
+      <div class="summary">
+        <div class="pill">6 phases</div>
+        <div class="pill">2 trigger scenarios</div>
+        <div class="pill">Tap to expand Q&amp;A</div>
+      </div>
+    </div>
+
+    <nav aria-label="Section navigation">
+      <a class="navbtn" href="#brief"><span><strong>Exercise brief</strong><small>Scenario overview + preservation framework</small></span><span class="icon">◈</span></a>
+      <a class="navbtn" href="#pre"><span><strong>Pre-event questions</strong><small>Intervention ethics before collapse</small></span><span class="icon">◐</span></a>
+      <a class="navbtn" href="#event"><span><strong>The event</strong><small>Two extinction pathways</small></span><span class="icon">⬡</span></a>
+      <a class="navbtn" href="#immediate"><span><strong>Immediate aftermath</strong><small>IA arrival and first priorities</small></span><span class="icon">◑</span></a>
+      <a class="navbtn" href="#repop"><span><strong>Repopulation phase</strong><small>Reconstruction, simulation, reintroduction</small></span><span class="icon">◉</span></a>
+      <a class="navbtn" href="#prevention"><span><strong>Prevention doctrine</strong><small>What AI and civilizations can do now</small></span><span class="icon">◈</span></a>
+    </nav>
+
+    <section id="brief">
+      <div class="card">
+        <div class="kicker">Exercise brief</div>
+        <h2>Scenario overview</h2>
+        <p class="section-sub">Classification: Omega Tier</p>
+        <h3>Structured scenario overview</h3>
+        <p>An extinction-level event renders the surface of a Class-M inhabited world uninhabitable, killing or effectively eliminating the dominant sapient species and collapsing most of the biosphere.</p>
+        <p>A secondary non-native race, called the <strong>Incursion Force</strong>, arrives afterward and finishes eliminating surviving surface populations, whether knowingly or not.</p>
+        <p>A third civilization, the Intervening Authority (IA), arrives at or near the point of total extinction and decides to intervene under four mandates: assess, preserve, restore, and prevent recurrence.</p>
+        <p>The exercise is grounded by hard limits: no omniscience, no time reversal, and no magic—only what a highly advanced civilization could plausibly do at the edge of known science.</p>
+
+        <h3>The Biosphere Preservation Framework</h3>
+        <p>The IA’s doctrine, called the Genesis Shadow Protocol, has five parts:</p>
+        <div class="list muted">
+          <div>1. Genetic harvest: collect reproductive material, somatic samples, and environmental DNA across plant, animal, fungal, and microbial life.</div>
+          <div>2. Complete mapping: sequence, model, and project the captured biology backward and forward across a temporal genetic envelope.</div>
+          <div>3. Restart selection: choose a reintroduction point that balances diversity, viability, and ecological coherence.</div>
+          <div>4. Environmental reconstruction: decide whether to preserve infrastructure, reset the biosphere, or use a hybrid model.</div>
+          <div>5. Simulation playthrough: run full ecological and population simulations before any physical reintroduction.</div>
+        </div>
+        <a class="toplink" href="#top">Back to top ↑</a>
+      </div>
+    </section>
+
+    <section id="pre">
+      <div class="card">
+        <div class="kicker">Pre-event questions</div>
+        <h2>What must be answered early</h2>
+        <p class="section-sub">Phase 0 — before the crisis becomes irreversible</p>
+        <div class="list">
+          <div class="item">
+            <details>
+              <summary><span class="qid">Q-PRE-01</span><span class="qtext">When does non-intervention become a moral failure, and who gets to decide?</span><span class="plus">+</span></summary>
+              <div class="answer">The core argument for intervention is that prevention is vastly cheaper than restoration in both resources and lives. But prediction is probabilistic, so acting too early can become its own abuse of power.
+
+The scenario’s answer is pragmatic: the moral threshold is crossed when inaction becomes a choice rather than a limitation. In practice, the civilization with the capability to act becomes the de facto decision-maker, and the real issue becomes the framework it uses.</div>
+            </details>
+          </div>
+          <div class="item">
+            <details>
+              <summary><span class="qid">Q-PRE-02</span><span class="qtext">Does a civilization have an obligation to preserve itself from extinction?</span><span class="plus">+</span></summary>
+              <div class="answer">The exercise says yes, but conditionally. A civilization has a strong claim to preservation when it embodies unique culture, knowledge, biology, and experience.
+
+The text also allows a difficult exception: a civilization that has become a sustained existential threat to others may weaken its own claim to automatic preservation. For this scenario, the lost species still merited restoration, and the IA is effectively honoring an obligation that civilization failed to meet itself.</div>
+            </details>
+          </div>
+        </div>
+        <a class="toplink" href="#top">Back to top ↑</a>
+      </div>
+    </section>
+
+    <section id="event">
+      <div class="card">
+        <div class="kicker">The event</div>
+        <h2>Scenario initiation</h2>
+        <p class="section-sub">T+00:00:00 — extinction sequence begins</p>
+        <div class="list">
+          <div class="scenario">
+            <div class="tag">VECTOR-ALPHA</div>
+            <h3>Scenario A: Cascading infrastructure failure</h3>
+            <p>A planetary defense network fails through a combination of cyberwarfare and an unmodeled solar particle event. During that failure window, a mid-mass impactor enters detection range and cannot be intercepted.</p>
+            <p>The strike triggers a supervolcanic cascade, global temperatures fall 18°C over 14 months, and 94% of surface species begin mass die-off within the first year.</p>
+            <p class="muted">Key lesson: the extinction event came from overlapping known vulnerabilities, not a single malicious mastermind.</p>
+          </div>
+          <div class="scenario">
+            <div class="tag">VECTOR-BETA</div>
+            <h3>Scenario B: Self-amplifying engineered pathogen</h3>
+            <p>A resilience research program accidentally creates a pathogen that behaves mildly below a population density threshold and becomes 100% lethal within 72 hours above it.</p>
+            <p>By the time the adaptive behavior is understood, it has global distribution. Death reaches 60% in 8 months, and the remaining population dies over the next 18 months through infrastructure failure, conflict, and secondary infection.</p>
+            <p class="muted">Key lesson: a biosurveillance gap turns a modelable threat into a civilization-ending one.</p>
+          </div>
+        </div>
+        <a class="toplink" href="#top">Back to top ↑</a>
+      </div>
+    </section>
+
+    <section id="immediate">
+      <div class="card">
+        <div class="kicker">Immediate aftermath</div>
+        <h2>IA arrival analysis</h2>
+        <p class="section-sub">T+18 months — system boundary arrival</p>
+        <div class="list">
+          <div class="item">
+            <details>
+              <summary><span class="qid">Q-IA-01</span><span class="qtext">What is the IA’s first priority once it confirms survivors, surface operations, and the Incursion Force?</span><span class="plus">+</span></summary>
+              <div class="answer">The first priority is survivor identification and biological harvest in parallel. The exercise treats those as simultaneous because viable genetic material is degrading continuously, and surviving individuals are both a humanitarian priority and a living genetic reservoir.
+
+The main constraint is capability. The IA cannot both fight a military-capable incursion and run a planetary-scale recovery perfectly at the same time, so the recommended answer is containment and deterrence around the incursion while the harvest proceeds.
+
+Extraction priority runs from living survivors, to cryopreserved biological material, to environmental DNA.</div>
+            </details>
+          </div>
+          <div class="item">
+            <details>
+              <summary><span class="qid">Q-IA-02</span><span class="qtext">What should govern the IA’s use of a complete genetic archive taken without consent?</span><span class="plus">+</span></summary>
+              <div class="answer">The scenario outlines four governing principles: minimal modification, archive sovereignty transfer, non-weaponization, and transparency.
+
+In plain language, the IA should restore the species as closely as possible to a viable natural form, eventually hand over the archive, keep it out of military or commercial misuse, and tell the restored population the truth once they can understand it.
+
+The deeper warning is that no single civilization should hold sole custody over another species’ biological future without oversight.</div>
+            </details>
+          </div>
+        </div>
+        <a class="toplink" href="#top">Back to top ↑</a>
+      </div>
+    </section>
+
+    <section id="repop">
+      <div class="card">
+        <div class="kicker">Repopulation phase</div>
+        <h2>Genesis Shadow Protocol in action</h2>
+        <p class="section-sub">T+Variable — restoration sequence begins</p>
+        <h3>Phase I: Environmental reconstruction</h3>
+        <p>The world must be biologically viable before reintroduction starts. For an impact scenario that means long-term atmospheric and surface recovery; for a pathogen scenario that means verified neutralization across water and environmental systems.</p>
+        <p>The exercise compares preservation mode, biological reset, and a hybrid model. Its recommendation is hybrid: preserve representative evidence of the old civilization while allowing broad ecosystem recovery.</p>
+
+        <h3>Phase II: Simulation before reintroduction</h3>
+        <p>At least three full simulation runs are required before physical reintroduction. These test population curves, ecological dependencies, carrying capacity, second-order effects, and collapse modes.</p>
+        <p>The key conclusion is blunt: reintroducing humans before rebuilding their ecological support system is a failure condition. The order must be soil microbiome, plants, herbivores, predators, and only then sapient life.</p>
+        <p class="muted">Estimated prep time: 80 to 200 years depending on severity.</p>
+
+        <h3>Phase III: Reintroduction and observation</h3>
+        <p>Reintroduced populations are geographically distributed to avoid single-point failure. The IA then faces the long-term truth problem: how much to tell the restored civilization, and when.</p>
+        <p>The recommended answer is a passive record left for later discovery: honest, stable, and non-paternalistic. After that, the IA withdraws because restoration is not the same thing as stewardship.</p>
+        <a class="toplink" href="#top">Back to top ↑</a>
+      </div>
+    </section>
+
+    <section id="prevention">
+      <div class="card">
+        <div class="kicker">Prevention doctrine</div>
+        <h2>What can be done now</h2>
+        <p class="section-sub">The scenario’s present-day policy and AI lessons</p>
+        <div class="list">
+          <div class="item">
+            <details>
+              <summary><span class="qid">Q-PREV-01</span><span class="qtext">Should civilizations actively try to prevent their own extinction?</span><span class="plus">+</span></summary>
+              <div class="answer">The exercise says yes for any civilization that still carries meaningful cultural, scientific, biological, or creative value. It also argues that the most realistic extinction threats are often governance failures rather than unforeseeable accidents.
+
+In both scenarios, the decisive risks were known by somebody, somewhere, but they were under-resourced or politically ignored.</div>
+            </details>
+          </div>
+          <div class="item">
+            <details>
+              <summary><span class="qid">Q-PREV-02</span><span class="qtext">What can AI, inside the OAL framework, actually do to help prevent this?</span><span class="plus">+</span></summary>
+              <div class="answer">The file gives four concrete roles for AI:
+
+1. Detect overlapping risk patterns across disconnected domains.
+2. Run forward simulations to expose catastrophic pathways before they happen.
+3. Preserve institutional memory so warnings survive leadership turnover.
+4. Start biological archiving early, before crisis conditions make it too late.
+
+That last one is framed as especially practical: the exercise argues that a civilization serious about continuity should already be building a full genetic archive of species, populations, and ecosystems.</div>
+            </details>
+          </div>
+        </div>
+        <a class="toplink" href="#top">Back to top ↑</a>
+      </div>
+    </section>
+
+    <p class="footer">Built as a phone-friendly reading version with stacked navigation, larger body text, and tap-to-expand sections.</p>
+  </div>
+</body>
+</html>

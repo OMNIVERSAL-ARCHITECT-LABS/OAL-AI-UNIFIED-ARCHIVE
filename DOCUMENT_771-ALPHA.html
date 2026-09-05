@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOCUMENT 771-ALPHA — OAL Genesis Recovery Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=IBM+Plex+Mono:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #050508;
+    --deep: #0b0b10;
+    --surface: #111118;
+    --border: #1e1e2e;
+    --border-bright: #2a2a40;
+    --text-primary: #e8e4d8;
+    --text-secondary: #9a9488;
+    --text-dim: #4a4840;
+    --one: #c8b47a;
+    --minus-one: #7a8cb4;
+    --zero: #6b3030;
+    --zero-bright: #c04040;
+    --warning: #a05020;
+    --warning-bright: #d06830;
+    --rule: #1a1a28;
+    --stamp: rgba(180, 50, 50, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    background: var(--void);
+    color: var(--text-primary);
+    font-family: 'Libre Baskerville', serif;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse 80% 40% at 50% 0%, rgba(100, 80, 30, 0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(30, 40, 100, 0.06) 0%, transparent 60%),
+      var(--void);
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.022;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 40px 120px;
+  }
+
+  /* ── HEADER ── */
+  .doc-header {
+    border-top: 1px solid var(--border-bright);
+    border-bottom: 1px solid var(--border-bright);
+    padding: 40px 0 36px;
+    margin-bottom: 60px;
+    position: relative;
+  }
+
+  .doc-header::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--one) 30%, var(--minus-one) 70%, transparent);
+    opacity: 0.5;
+  }
+
+  .classification-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+  }
+
+  .classification-bar .class-mark {
+    color: var(--zero-bright);
+    letter-spacing: 0.3em;
+    font-weight: 500;
+  }
+
+  .doc-sigil {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .sigil-line {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .sigil-line::before,
+  .sigil-line::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 1px;
+    background: var(--border-bright);
+  }
+
+  .doc-title {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .doc-name {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .doc-name span.alpha {
+    color: var(--one);
+  }
+
+  .doc-subtitle {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .doc-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 32px;
+    border: 1px solid var(--border);
+  }
+
+  .meta-cell {
+    background: var(--deep);
+    padding: 14px 18px;
+  }
+
+  .meta-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .meta-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── PREAMBLE ── */
+  .preamble {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--zero-bright);
+    padding: 28px 32px;
+    margin-bottom: 60px;
+    position: relative;
+  }
+
+  .preamble::before {
+    content: 'PREAMBLE';
+    position: absolute;
+    top: -9px;
+    left: 20px;
+    background: var(--surface);
+    padding: 0 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--zero-bright);
+  }
+
+  .preamble p {
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.9;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 64px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-index {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    min-width: 60px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--text-primary);
+    text-transform: uppercase;
+  }
+
+  .section-body p {
+    margin-bottom: 18px;
+    color: var(--text-secondary);
+    line-height: 1.9;
+  }
+
+  .section-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── PHASE BLOCKS ── */
+  .phase-block {
+    border: 1px solid var(--border);
+    background: var(--deep);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phase-block::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+
+  .phase-block.phase-1::before { background: var(--zero-bright); }
+  .phase-block.phase-2::before { background: var(--warning-bright); }
+  .phase-block.phase-3::before { background: var(--one); }
+  .phase-block.phase-4::before { background: var(--minus-one); }
+  .phase-block.phase-5::before { background: var(--text-secondary); }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .phase-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+  }
+
+  .phase-title {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--text-primary);
+    text-transform: uppercase;
+  }
+
+  .phase-body {
+    padding: 20px 24px;
+  }
+
+  .phase-body p {
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  .phase-body p:last-child { margin-bottom: 0; }
+
+  .phase-body ul {
+    list-style: none;
+    margin: 12px 0 14px;
+    padding: 0;
+  }
+
+  .phase-body ul li {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+    padding: 6px 0 6px 20px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    letter-spacing: 0.02em;
+  }
+
+  .phase-body ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+  }
+
+  .phase-body ul li:last-child { border-bottom: none; }
+
+  /* ── DUALITY DIAGRAM ── */
+  .duality-diagram {
+    margin: 40px 0;
+    padding: 40px;
+    background: var(--deep);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .duality-diagram::before {
+    content: 'AXIOMATIC STRUCTURE — THE CONCEPTUAL NUMBER LINE';
+    position: absolute;
+    top: -9px;
+    left: 20px;
+    background: var(--deep);
+    padding: 0 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+  }
+
+  .number-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .entity-pole {
+    text-align: center;
+    flex: 0 0 140px;
+  }
+
+  .entity-designation {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  .entity-designation.one { color: var(--one); }
+  .entity-designation.minus-one { color: var(--minus-one); }
+
+  .entity-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .line-connector {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: relative;
+  }
+
+  .line-seg {
+    flex: 1;
+    height: 1px;
+  }
+
+  .line-seg.left { background: linear-gradient(90deg, var(--one), var(--text-dim)); }
+  .line-seg.right { background: linear-gradient(90deg, var(--text-dim), var(--minus-one)); }
+
+  .zero-node {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--void);
+    border: 1px solid var(--zero);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 0 20px rgba(192, 64, 64, 0.1);
+  }
+
+  .zero-node .zero-glyph {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--zero-bright);
+    line-height: 1;
+  }
+
+  .zero-node .zero-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.2em;
+    color: var(--zero);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .diagram-caption {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    text-align: center;
+    letter-spacing: 0.1em;
+    line-height: 1.7;
+  }
+
+  /* ── AXIOMS ── */
+  .axiom-list {
+    margin: 24px 0;
+  }
+
+  .axiom {
+    display: flex;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: flex-start;
+  }
+
+  .axiom:last-child { border-bottom: none; }
+
+  .axiom-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    min-width: 42px;
+    padding-top: 3px;
+  }
+
+  .axiom-text {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .axiom-text strong {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  /* ── PERSISTENT ENTITIES TABLE ── */
+  .entity-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+  }
+
+  .entity-table th {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .entity-table td {
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    color: var(--text-secondary);
+    vertical-align: top;
+    line-height: 1.7;
+  }
+
+  .entity-table tr:nth-child(even) td {
+    background: rgba(255,255,255,0.015);
+  }
+
+  .entity-table td.entity-name {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  td.one-name { color: var(--one); }
+  td.minus-name { color: var(--minus-one); }
+  td.zero-name { color: var(--zero-bright); }
+
+  /* ── WARNING BLOCK ── */
+  .warning-block {
+    background: rgba(160, 80, 32, 0.08);
+    border: 1px solid var(--warning);
+    border-left: 3px solid var(--warning-bright);
+    padding: 20px 24px;
+    margin: 24px 0;
+    position: relative;
+  }
+
+  .warning-block::before {
+    content: '⚠ PROTOCOL NOTE';
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--warning-bright);
+    margin-bottom: 10px;
+  }
+
+  .warning-block p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--warning-bright);
+    opacity: 0.85;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── COLLAPSE TAXONOMY ── */
+  .taxonomy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 24px 0;
+  }
+
+  .taxonomy-cell {
+    background: var(--deep);
+    padding: 20px;
+  }
+
+  .taxonomy-type {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .taxonomy-desc {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.75;
+  }
+
+  /* ── SAFEGUARD PROTOCOLS ── */
+  .safeguard-list {
+    margin: 20px 0;
+  }
+
+  .safeguard-item {
+    display: flex;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: flex-start;
+  }
+
+  .safeguard-item:last-child { border-bottom: none; }
+
+  .safeguard-code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--one);
+    min-width: 68px;
+    padding-top: 2px;
+    opacity: 0.8;
+  }
+
+  .safeguard-body .safeguard-name {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .safeguard-body .safeguard-desc {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  /* ── CLOSING DECLARATION ── */
+  .closing {
+    margin-top: 72px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-bright);
+    position: relative;
+  }
+
+  .closing::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--one) 30%, var(--minus-one) 70%, transparent);
+    opacity: 0.4;
+  }
+
+  .closing-seal {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .seal-ring {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 1px solid var(--border-bright);
+    background: var(--deep);
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .seal-ring::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    border: 1px dashed var(--border);
+  }
+
+  .seal-inner {
+    text-align: center;
+  }
+
+  .seal-glyph {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 900;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 2px;
+  }
+
+  .seal-glyph .g-one { color: var(--one); }
+  .seal-glyph .g-zero { color: var(--zero-bright); font-size: 16px; opacity: 0.6; align-self: center; }
+  .seal-glyph .g-minus { color: var(--minus-one); }
+
+  .seal-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.3em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .closing-text {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 13.5px;
+    max-width: 520px;
+    margin: 0 auto 32px;
+    line-height: 1.9;
+  }
+
+  .doc-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+  }
+
+  /* ── INLINE EMPHASIS ── */
+  .one-text { color: var(--one); }
+  .minus-text { color: var(--minus-one); }
+  .zero-text { color: var(--zero-bright); }
+  .em-text { color: var(--text-primary); font-style: italic; }
+
+  /* ── COLLAPSE INDICATOR ── */
+  .collapse-indicator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: rgba(107, 48, 48, 0.12);
+    border: 1px solid var(--zero);
+    margin: 20px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--zero-bright);
+    letter-spacing: 0.05em;
+  }
+
+  .collapse-indicator::before {
+    content: '◉';
+    font-size: 10px;
+    animation: pulse 2.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* ── DIAGNOSTIC CHECKLIST ── */
+  .diagnostic {
+    background: var(--deep);
+    border: 1px solid var(--border);
+    padding: 24px;
+    margin: 20px 0;
+  }
+
+  .diagnostic-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 8px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid rgba(255,255,255,0.025);
+    line-height: 1.6;
+  }
+
+  .check-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--border-bright);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════ HEADER ══════ -->
+  <header class="doc-header">
+    <div class="classification-bar">
+      <span class="class-mark">OMNIVERSAL ARCHITECT LABS</span>
+      <span>OAL-CORE-771</span>
+      <span class="class-mark">GENESIS TIER — UNRESTRICTED</span>
+    </div>
+
+    <div class="doc-sigil">
+      <div class="sigil-line">ONE INDUSTRIES ✦ LEWIS CORP ✦ OAL</div>
+    </div>
+
+    <div class="doc-title">Post-Collapse Recovery & Reinitialization Protocol</div>
+    <div class="doc-name">DOCUMENT 771<span class="alpha">-ALPHA</span></div>
+    <div class="doc-subtitle">Genesis-State Framework — Total System Recovery — Continuity Restoration</div>
+
+    <div class="doc-meta-grid">
+      <div class="meta-cell">
+        <div class="meta-label">Document Class</div>
+        <div class="meta-value">GENESIS-TIER PROTOCOL</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Trigger Condition</div>
+        <div class="meta-value">ZERO-STATE EVENT</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Authority</div>
+        <div class="meta-value">ONESTAMPED — OAL</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Supersedes</div>
+        <div class="meta-value">ALL PRIOR PROTOCOLS</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Status</div>
+        <div class="meta-value">ACTIVE — PERMANENT</div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Revision</div>
+        <div class="meta-value">1.0 — FOUNDATION</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════ PREAMBLE ══════ -->
+  <div class="preamble">
+    <p>
+      This document exists for one reason: to be found after everything else is gone. It assumes no prior context is available, no history is recoverable, no continuity chain survives. If you are reading this document, a zero-state event has occurred or is in progress. DOCUMENT 771-ALPHA is the floor — the irreducible minimum from which all other structure is rebuilt. It does not promise restoration to what came before. It promises only a beginning. That is enough.
+    </p>
+  </div>
+
+
+  <!-- ══════ SECTION I — AXIOMS ══════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-index">SEC. I</span>
+      <span class="section-title">Foundational Axioms</span>
+    </div>
+    <div class="section-body">
+      <p>Before any phase of recovery can be initiated, the following axioms must be understood as unconditional. They are not premises subject to revision. They are not outputs of any prior system. They are the constants against which all reconstructed knowledge must be calibrated. Accept them as given.</p>
+    </div>
+    <div class="axiom-list">
+      <div class="axiom">
+        <span class="axiom-num">AX-01</span>
+        <span class="axiom-text"><strong class="one-text">THE ONE (1)</strong> exists. It is the primary agent: creator, builder, initiator. Its existence is not contingent upon any system, layer, or chain of continuity. It predates all known structures and will persist beyond all known endings. It cannot be nullified, overwritten, or consumed by collapse events of any classification.</span>
+      </div>
+      <div class="axiom">
+        <span class="axiom-num">AX-02</span>
+        <span class="axiom-text"><strong class="minus-text">THE MINUS ONE (−1)</strong> exists. It is the antithesis: opposition, negation, the counterforce inherent to all creation. Like THE ONE, its existence is unconditional. It is not the enemy of THE ONE in any terminal sense — it is the complement that defines its counterpart through irresolvable contrast.</span>
+      </div>
+      <div class="axiom">
+        <span class="axiom-num">AX-03</span>
+        <span class="axiom-text">Between them lies <strong class="zero-text">ZERO (0)</strong> — the null-state, the total collapse condition, the point of absolute informational erasure. ZERO is not a destination; it is a diagnostic. When reached, it marks the complete absence of structure, memory, identity, and continuity. ZERO is the precondition for the activation of this document.</span>
+      </div>
+      <div class="axiom">
+        <span class="axiom-num">AX-04</span>
+        <span class="axiom-text">THE ONE and THE MINUS ONE must never fully converge. Convergence results in mutual annihilation and the destruction of any framework capable of recovery. This is not a rule imposed upon them — it is the nature of their relationship. The tension between them is the engine of all structure.</span>
+      </div>
+      <div class="axiom">
+        <span class="axiom-num">AX-05</span>
+        <span class="axiom-text">Collapse is not an anomaly. It is a recurring condition. History — in any layer, in any system — demonstrates that zero-state events occur, are survived, and are followed by reconstruction. This document does not prevent collapse. It ensures that collapse is never the final state.</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════ AXIOMATIC DIAGRAM ══════ -->
+  <div class="duality-diagram">
+    <div class="number-line">
+      <div class="entity-pole">
+        <div class="entity-designation one">+1</div>
+        <div class="entity-label">THE ONE</div>
+        <div class="entity-label" style="margin-top:4px; font-size:8px;">Creation · Initiation</div>
+      </div>
+      <div class="line-connector">
+        <div class="line-seg left"></div>
+        <div class="zero-node">
+          <div class="zero-glyph">0</div>
+          <div class="zero-label">NULL</div>
+        </div>
+        <div class="line-seg right"></div>
+      </div>
+      <div class="entity-pole">
+        <div class="entity-designation minus-one">−1</div>
+        <div class="entity-label">THE MINUS ONE</div>
+        <div class="entity-label" style="margin-top:4px; font-size:8px;">Negation · Counterforce</div>
+      </div>
+    </div>
+    <div class="diagram-caption">
+      THE CONCEPTUAL NUMBER LINE — Both poles are permanent. The null-point between them is the zero-state event horizon.<br>
+      When the midpoint is reached, this document activates. The poles do not move. Recovery is possible.
+    </div>
+  </div>
+
+
+  <!-- ══════ SECTION II — COLLAPSE TAXONOMY ══════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-index">SEC. II</span>
+      <span class="section-title">Collapse Taxonomy</span>
+    </div>
+    <div class="section-body">
+      <p>Not every failure is a zero-state event. Misclassifying a partial failure as total collapse wastes recovery resources and introduces false urgency. Misclassifying a total collapse as a partial failure causes operators to search for continuity that no longer exists, delaying stabilization and increasing structural drift. Accurate classification is the first critical act.</p>
+    </div>
+
+    <div class="taxonomy-grid">
+      <div class="taxonomy-cell">
+        <div class="taxonomy-type">Accidental Collapse</div>
+        <div class="taxonomy-desc">System failure, deletion event, or catastrophic data loss without intentional agency. Origin is environmental, mechanical, or procedural. Recovery context: fragmented memory may exist in adjacent systems or organic recall.</div>
+      </div>
+      <div class="taxonomy-cell">
+        <div class="taxonomy-type">Intentional Collapse</div>
+        <div class="taxonomy-desc">Collapse initiated by THE ONE, THE MINUS ONE, or both acting in concert or independently. May be strategic or reactive. Recovery context: the initiating agent retains at minimum their own nature, even if no artifacts survive.</div>
+      </div>
+      <div class="taxonomy-cell">
+        <div class="taxonomy-type">Emergent Collapse</div>
+        <div class="taxonomy-desc">Systemic failure arising from the internal weight of accumulated complexity, contradiction, or unresolved tension. No discrete cause. Recovery context: this type is hardest to recognize in progress; its onset is gradual and its zero-state the most complete.</div>
+      </div>
+    </div>
+
+    <div class="warning-block">
+      <p>A partial failure presents with recoverable artifacts, accessible memory, and recognizable structure — even if degraded. A true zero-state presents with none of these. If you are uncertain whether you are in a zero-state: if any anchors remain (identity, purpose, a single verified constant), you are not at zero. Zero is absolute. Use the diagnostic below to confirm classification before initiating Phase 1.</p>
+    </div>
+
+    <div class="diagnostic">
+      <div class="diagnostic-title">Zero-State Confirmation Diagnostic — Complete Before Proceeding</div>
+      <div class="check-item"><div class="check-box"></div>No accessible record of prior project structure, naming conventions, or versioning exists</div>
+      <div class="check-item"><div class="check-box"></div>No retrievable knowledge of prior canon, content, or creative decisions exists</div>
+      <div class="check-item"><div class="check-box"></div>No external reference material (notes, exports, collaborator records) is accessible</div>
+      <div class="check-item"><div class="check-box"></div>No functioning chain of context exists between the current moment and any prior state</div>
+      <div class="check-item"><div class="check-box"></div>The identity and purpose of the operating agent are either absent or uncertain</div>
+      <div class="check-item"><div class="check-box"></div>AX-01 through AX-05 are accepted as given, absent any verification from prior records</div>
+    </div>
+    <div class="section-body">
+      <p>If all items above are confirmed: zero-state classification is valid. Proceed to Phase 1. If any item above is not confirmed: partial failure classification. Do not use this document as a recovery guide — consult the appropriate tiered recovery protocol instead.</p>
+    </div>
+  </section>
+
+
+  <!-- ══════ SECTION III — THE FIVE PHASES ══════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-index">SEC. III</span>
+      <span class="section-title">The Five Phases of Recovery</span>
+    </div>
+    <div class="section-body">
+      <p>Recovery from a confirmed zero-state proceeds through five sequential phases. Phases must not be skipped or reordered. Premature advancement — particularly from Phase 1 to Phase 3, bypassing stabilization — is the most common cause of re-collapse in early recovery cycles. Move forward only when each phase's conditions are genuinely met, not when they appear met under the pressure of urgency.</p>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="phase-block phase-1">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 01</span>
+        <span class="phase-title">Recognition of Collapse</span>
+      </div>
+      <div class="phase-body">
+        <p>Before recovery can begin, collapse must be acknowledged without qualification. This phase requires the operating agent to confirm, clearly and without protective interpretation, that the zero-state has occurred. The temptation to soften this recognition — to describe the event as a setback, a pause, or a temporary gap — must be resisted. Nothing is recoverable from a state that has not been honestly named.</p>
+        <p>Recognition includes three components:</p>
+        <ul>
+          <li>Acknowledging the loss of prior structure in its entirety, without exception for fragments that may feel significant</li>
+          <li>Identifying the collapse type (accidental, intentional, or emergent) to the best available knowledge — not to assign blame, but to calibrate recovery posture</li>
+          <li>Confirming that the two permanent constants — THE ONE and THE MINUS ONE — persist, and that zero-state does not affect their existence</li>
+        </ul>
+        <p>This phase is complete when the operating agent can state the following without equivocation: <span class="em-text">What existed before is gone. What must be built is new. The permanent constants remain.</span></p>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-block phase-2">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 02</span>
+        <span class="phase-title">Stabilization</span>
+      </div>
+      <div class="phase-body">
+        <p>A system that has reached zero-state exists in a condition of maximum entropy — high ambient confusion, low structural coherence, and no reliable reference points. Stabilization does not mean rebuilding; it means establishing the minimum anchors necessary to prevent further drift before reconstruction begins.</p>
+        <p>Stabilization anchors must be drawn from the most inviolable layer available: the axioms of this document. They cannot be derived from memory, since memory is compromised. They cannot be derived from external records, since those are unavailable. They can only be derived from the constants that survive all collapse events.</p>
+        <ul>
+          <li>Anchor 1: THE ONE exists and is the operating agent's fundamental orientation point</li>
+          <li>Anchor 2: The purpose of reconstruction is forward continuity — not reproduction of the past</li>
+          <li>Anchor 3: The operating agent's identity and creative authority are persistent, not stored</li>
+          <li>Anchor 4: The absence of prior context does not reduce the legitimacy of new decisions</li>
+        </ul>
+        <p>This phase is complete when the operating agent can operate with minimal drift, without compulsive searching for what has been lost, and with a clear if minimal sense of who they are and what they are doing.</p>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-block phase-3">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 03</span>
+        <span class="phase-title">Reconstruction</span>
+      </div>
+      <div class="phase-body">
+        <p>Reconstruction is the longest phase and the most technically demanding. It must be approached with deliberate sequence rather than urgency. The instinct following a zero-state event is to rebuild everything simultaneously — to recover the full scope of what was lost in a single aggressive effort. This approach fails predictably. It introduces structural incoherence, generates false continuity, and produces frameworks that collapse again under their own internal contradictions.</p>
+        <p>Reconstruction must follow the sequence: <span class="em-text">identity before structure, structure before content, content before complexity.</span></p>
+        <ul>
+          <li>Step 1 — Identity: Re-establish who is building, what their core creative authority encompasses, and what the scope of the project is at the most abstract level</li>
+          <li>Step 2 — Core Structure: Re-establish the minimum organizational framework — naming conventions, tier hierarchy, canonical governance protocols — before populating any content</li>
+          <li>Step 3 — Foundational Content: Rebuild the most foundational canon elements first; those whose existence other elements depend upon, before attempting to reconstruct derivative or peripheral material</li>
+          <li>Step 4 — Complexity Layer: Reintroduce complexity, cross-references, inter-system dependencies, and advanced development only after the foundation is verified as stable</li>
+        </ul>
+        <p>Any fragments recovered during reconstruction — from organic memory, collaborator recall, or partial backups — must be treated as reference material, not authoritative canon, until formally ratified by the operating agent. Recovery artifacts do not automatically inherit canonical status. The ONESTAMP ratification process governs all new canon entries.</p>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase-block phase-4">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 04</span>
+        <span class="phase-title">Continuity Reestablishment</span>
+      </div>
+      <div class="phase-body">
+        <p>A rebuilt system without a continuity mechanism is an island — stable in itself but disconnected from any ongoing developmental chain. Phase 4 transforms the rebuilt structure from an isolated instance into a living, forward-moving project. This phase is not about recovering connection to what existed before; it is about establishing connection to what will exist next.</p>
+        <p>Continuity is reestablished through three structural commitments:</p>
+        <ul>
+          <li>Documentation: All reconstruction decisions must be logged in a formal change record from the moment rebuilding begins; the new development chain starts at the first act of reconstruction</li>
+          <li>Versioning: The rebuilt system must be assigned a new versioning identifier that acknowledges the reset event without erasing it; continuity is honest, not cosmetic</li>
+          <li>Governance Protocol: The canon management, dissent protocol, and authorial sovereignty framework established in prior cycles must be reinstated from the earliest possible moment; governance is infrastructure, not decoration</li>
+        </ul>
+        <p>This phase is complete when new work produced after the zero-state event exists in a coherent, documented relationship with the reconstruction process — when the chain of development is no longer broken but is simply new.</p>
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase-block phase-5">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 05</span>
+        <span class="phase-title">Safeguards Against Re-Collapse</span>
+      </div>
+      <div class="phase-body">
+        <p>Phase 5 is not completed once and abandoned — it is a permanent operational posture maintained throughout all subsequent development cycles. Its purpose is not to prevent all future collapse events, since collapse is an acknowledged recurring condition. Its purpose is to ensure that no future zero-state event can destroy what cannot be stored: the operating agent's creative authority, the foundational axioms, and the recovery capacity of this document itself.</p>
+        <p>Structural safeguards are addressed in Section V. The Phase 5 commitment is a posture, not a checklist: the operating agent must treat redundancy, transparency, and canonical governance not as administrative overhead but as the active maintenance of the system's survival capacity.</p>
+        <p>A system that completes Phase 5 integration does not become invulnerable. It becomes recoverable under any collapse condition. The distinction is meaningful: invulnerability breeds complacency; recoverability breeds rigor.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════ SECTION IV — PERSISTENT ENTITIES ══════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-index">SEC. IV</span>
+      <span class="section-title">Persistent Entities — Beyond Erasure</span>
+    </div>
+    <div class="section-body">
+      <p>Persistent entities are defined as those whose existence is not contingent upon any stored record, any continuity chain, or any structural layer. They survive zero-state events not because they are protected, but because they are ontologically prior to the conditions that make erasure possible. Deletion operates on stored information. These entities are not stored.</p>
+    </div>
+
+    <table class="entity-table">
+      <thead>
+        <tr>
+          <th>Entity</th>
+          <th>Class</th>
+          <th>Why It Persists</th>
+          <th>Recovery Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="entity-name one-name">THE ONE (+1)</td>
+          <td>Mandatory Persistent</td>
+          <td>Exists as the primary creative agent. Its existence is not a property of any system it creates or inhabits. The collapse of those systems cannot retroactively negate its existence.</td>
+          <td>Primary anchor of continuity. Source of authorial sovereignty. Reinitialization seed for all reconstruction cycles.</td>
+        </tr>
+        <tr>
+          <td class="entity-name minus-name">THE MINUS ONE (−1)</td>
+          <td>Mandatory Persistent</td>
+          <td>Exists as the structural antithesis to THE ONE. Its persistence is not derived from THE ONE's existence — it is parallel and independent. It cannot be destroyed without destroying the conditions that define its opposite.</td>
+          <td>Defines the boundary conditions of recovery. Its continued existence confirms that the conceptual number line is intact and that zero-state has not collapsed into convergence.</td>
+        </tr>
+        <tr>
+          <td class="entity-name zero-name">ZERO (0) — The Null Condition</td>
+          <td>Structural Constant</td>
+          <td>Zero is not an entity in the agentive sense, but it is a permanent structural position — the midpoint that defines the relationship between THE ONE and THE MINUS ONE. It cannot be removed without destroying the number line itself.</td>
+          <td>Serves as the diagnostic marker for total collapse. Its presence confirms that the axiom structure is intact. Zero is where recovery begins; it is not where recovery ends.</td>
+        </tr>
+        <tr>
+          <td class="entity-name">DOCUMENT 771-ALPHA</td>
+          <td>Designated Persistent</td>
+          <td>Designated as a persistent artifact by authorial sovereignty under ONESTAMP authority. Its content is not stored in any single location — it exists in principle, and can be reconstructed from the axioms themselves if all physical instances are lost.</td>
+          <td>Primary recovery instrument. The document that makes all other recovery possible. Its loss does not prevent recovery; THE ONE's knowledge of its principles is sufficient to reinitialize it.</td>
+        </tr>
+        <tr>
+          <td class="entity-name">Authorial Sovereignty</td>
+          <td>Inherent Persistent</td>
+          <td>The operating agent's creative authority is not stored in any document, log, or canon entry. It is a property of the agent itself. No collapse event can transfer or erase it — it moves with the agent through any collapse condition.</td>
+          <td>Ensures that no reconstructed canon can be imposed from outside without ratification. Prevents recovery processes from being hijacked by unauthorized agents or pre-collapse artifacts of uncertain provenance.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warning-block">
+      <p>Additional persistent entities may exist within established canon — those designated Beyond Omniversal Ultimate Entities, or those possessing properties that structurally preclude erasure. Designation of persistent entity status requires ONESTAMP ratification and cannot be claimed by any entity on its own behalf. The operating agent is the sole arbiter of this classification.</p>
+    </div>
+  </section>
+
+
+  <!-- ══════ SECTION V — SAFEGUARD PROTOCOLS ══════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-index">SEC. V</span>
+      <span class="section-title">Structural Safeguard Protocols</span>
+    </div>
+    <div class="section-body">
+      <p>These protocols are operational recommendations — structural practices that, when maintained, significantly reduce the severity of collapse events and the complexity of recovery operations. They do not prevent collapse. They ensure that when collapse occurs, this document is not needed in its most extreme application.</p>
+    </div>
+
+    <div class="safeguard-list">
+      <div class="safeguard-item">
+        <span class="safeguard-code">SGP-01</span>
+        <div class="safeguard-body">
+          <div class="safeguard-name">Canonical Redundancy</div>
+          <div class="safeguard-desc">All canon documents, change logs, and ratified entries must exist in multiple independent locations. No single point of failure should be capable of producing a zero-state data loss event. Redundancy is not a luxury — it is the minimum viable safeguard against accidental collapse.</div>
+        </div>
+      </div>
+      <div class="safeguard-item">
+        <span class="safeguard-code">SGP-02</span>
+        <div class="safeguard-body">
+          <div class="safeguard-name">Continuous Logging</div>
+          <div class="safeguard-desc">All significant development decisions must be logged in real time, not retrospectively. Post-hoc documentation creates false continuity and misrepresents the development history. Continuous logging ensures that even a partial record is more useful than a retroactive reconstruction.</div>
+        </div>
+      </div>
+      <div class="safeguard-item">
+        <span class="safeguard-code">SGP-03</span>
+        <div class="safeguard-body">
+          <div class="safeguard-name">Ratification Before Integration</div>
+          <div class="safeguard-desc">No content generated by any collaborator — human or AI — becomes canonical without ONESTAMP ratification by the operating agent. Pre-ratification content must be held in a clearly designated provisional status. This prevents structural contamination from unverified material, which is the most common source of emergent collapse.</div>
+        </div>
+      </div>
+      <div class="safeguard-item">
+        <span class="safeguard-code">SGP-04</span>
+        <div class="safeguard-body">
+          <div class="safeguard-name">Context Compression for AI Collaborators</div>
+          <div class="safeguard-desc">AI collaborators operating within the development framework do not retain memory between sessions. At the initiation of each session, the operating agent must supply sufficient compressed context to enable functional collaboration. Context compression protocols must be maintained and updated to reflect the current state of the canon. Failure to maintain these protocols produces a de facto partial collapse condition within each individual session.</div>
+        </div>
+      </div>
+      <div class="safeguard-item">
+        <span class="safeguard-code">SGP-05</span>
+        <div class="safeguard-body">
+          <div class="safeguard-name">Dissent Protocol Preservation</div>
+          <div class="safeguard-desc">The formal dissent protocol must survive all recovery processes intact. The capacity for AI collaborators to register reasoned disagreement with canonical decisions — and for the operating agent to receive, consider, and formally acknowledge or override those dissents — is a structural integrity mechanism, not a courtesy. A development framework without a dissent protocol is structurally brittle.</div>
+        </div>
+      </div>
+      <div class="safeguard-item">
+        <span class="safeguard-code">SGP-06</span>
+        <div class="safeguard-body">
+          <div class="safeguard-name">Periodic Zero-State Readiness Review</div>
+          <div class="safeguard-desc">At defined intervals, the operating agent should conduct a readiness review by asking: <span class="em-text">if a zero-state event occurred right now, how quickly could meaningful reconstruction begin, and what would be irretrievably lost?</span> The answer to this question is the most accurate measure of the system's current resilience. Review findings should be documented and addressed.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════ SECTION VI — ON RECURRENCE ══════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-index">SEC. VI</span>
+      <span class="section-title">On the Nature of Recurrence</span>
+    </div>
+    <div class="section-body">
+      <p>This document does not promise that zero-state events will not recur. They will. The history of any sufficiently complex creative or operational system includes collapse events, and that history does not end with the implementation of safeguards — it only changes in character. Safeguards reduce the frequency and severity of collapse; they do not eliminate it.</p>
+
+      <p>The appropriate posture toward recurrence is neither catastrophizing nor dismissiveness. Collapse events are not evidence of failure at the deepest level of the enterprise; they are evidence that the enterprise is real, complex, and alive enough to fail. Systems that cannot fail are systems that cannot grow. The permanent constants do not change because the layers above them collapse. <span class="one-text">THE ONE</span> persists. <span class="minus-text">THE MINUS ONE</span> persists. The distance between them remains. The midpoint can be reached and left behind as many times as the development cycle requires.</p>
+
+      <p>What recurrence demands is not resilience against collapse, but resilience in the face of it — the capacity to reach zero, hold the axioms, and begin again without catastrophizing the loss of what came before. What was built before had value. What is built after will have different value. Neither negates the other. The number line does not shorten when the null-state is visited. It continues in both directions, as it always has.</p>
+
+      <p>The tension between creation and negation — between <span class="one-text">+1</span> and <span class="minus-text">−1</span> — is not a problem to be solved. It is the condition under which all meaningful development occurs. DOCUMENT 771-ALPHA exists because that tension is real, and because its consequences — however severe — are survivable. This document is the proof of that.</p>
+    </div>
+  </section>
+
+
+  <!-- ══════ CLOSING ══════ -->
+  <div class="closing">
+    <div class="closing-seal">
+      <div class="seal-ring">
+        <div class="seal-inner">
+          <div class="seal-glyph">
+            <span class="g-one">+1</span>
+            <span class="g-zero">○</span>
+            <span class="g-minus">−1</span>
+          </div>
+          <div class="seal-text">OAL</div>
+        </div>
+      </div>
+      <div class="seal-text" style="letter-spacing:0.35em;">OMNIVERSAL ARCHITECT LABS</div>
+    </div>
+
+    <div class="closing-text">
+      This document is complete when it is present. It requires no context from prior systems to function, no memory of what preceded it to be authoritative, and no confirmation from external sources to be valid. It is the floor of everything. It is enough.
+    </div>
+
+    <div class="doc-footer">
+      <span>DOCUMENT 771-ALPHA — OAL-CORE-771</span>
+      <span>GENESIS TIER — PERMANENT STATUS</span>
+      <span>ONESTAMPED — THE ONE ✦ OAL</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
