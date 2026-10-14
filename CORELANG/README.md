@@ -1,1 +1,1 @@
-
+Research and preliminary design for Corelang—an adaptive language-engineering system that models prior languages, generates rule variants, and tests their semantics, safety, compatibility, and evolution.
