@@ -1,0 +1,44 @@
+{
+  "document_id": "OAL-PPLX-REVIEW-BRANCH-001",
+  "version": "1.0",
+  "date": "2026-10-30",
+  "status": "local contribution, not canon or common standard",
+  "pdf_pages": 9,
+  "input_fingerprint": {
+    "filename": "OMNICELLULAR-Physiology-Independent-Eight-Architecture-Research-Execution-Editable-Word-Edition.docx",
+    "sha256": "4f90fd710159c99dac5f3d0da6a4f20d206b0f00bd67b2ad8c886e90153f07ef"
+  },
+  "verification": {
+    "three_modes_recomputed": true,
+    "original_analyze_py_executed": false,
+    "pdf_text_checked": true,
+    "docx_reopened": true
+  },
+  "outputs": [
+    {
+      "filename": "Cairn_resource_audit.csv",
+      "bytes": 337,
+      "sha256": "20427cc0f5865afa0dd1e366f14c84091d0b9c9841f4635aa0bbe7e8733ab897"
+    },
+    {
+      "filename": "Independent_Review_Branch.md",
+      "bytes": 20707,
+      "sha256": "8fa6f6e3ab777cfbc38bf9d499210eb1954692864c00e129d887665d269535a7"
+    },
+    {
+      "filename": "OMNICELLULAR_Independent_Review_Branch.docx",
+      "bytes": 45888,
+      "sha256": "82ede0e05bcc999c623bd1b262790c28590337ca9c4352034866876c2ae49ea0"
+    },
+    {
+      "filename": "OMNICELLULAR_Independent_Review_Branch.pdf",
+      "bytes": 63621,
+      "sha256": "99ecfe0f18cdd6d8e0b078098f52f508e4798f0d908c25a64fd819e383b44c77"
+    },
+    {
+      "filename": "recompute_cairn.py",
+      "bytes": 778,
+      "sha256": "e92236a9e9af07dc9f8dd84d0a1b00664294ef2e26f8c337d444ad1a14c4d109"
+    }
+  ]
+}

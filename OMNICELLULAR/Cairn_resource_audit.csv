@@ -1,0 +1,4 @@
+mode,power_W,energy_Wh,heat_capacity_J_per_K,temperature_margin_K,energy_only_h,no_export_thermal_h,combined_bound_h
+Normal,150.0,6000,30000,20,40.0,1.1111111111111112,1.1111111111111112
+Essential,12.0,6000,30000,20,500.0,13.88888888888889,13.88888888888889
+Preservation,0.2,6000,30000,20,30000.0,833.3333333333334,833.3333333333334
