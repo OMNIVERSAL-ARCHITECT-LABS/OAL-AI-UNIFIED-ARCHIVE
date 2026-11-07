@@ -1,0 +1,26 @@
+OAL Currency Laboratory - Perplexity local reproduction and checker audit
+Date: 7 November 2026
+Scope: seven newly uploaded Claude/ChatGPT artifacts; no GitHub snapshot verified.
+
+REPRODUCTION
+ChatGPT: 44 records, 133 checks, 0 failures. Regenerated JSON byte-identical to uploaded JSON.
+Claude: 48 resource-box records. Printed stdout byte-identical to uploaded log. All three supplied deliberate defects detected.
+
+ADDITIONAL EXECUTED PROBES
+ChatGPT verifier accepted all three deliberately altered records:
+1. Settled creation with B unchanged but total still increased.
+2. Settled transfer with A not debited but total field unchanged.
+3. Unauthorized fixture relabeled SETTLED with a numerically correct transfer.
+These are checker gaps; they are not outputs produced by the unmodified transition implementation.
+
+Claude checker accepted a receipt issued AT_START when delivery subsequently completed. It does not verify historical event ordering, only terminal balances.
+Under DEDUP, retry of a partially completed request returns PARTIAL without completing the remaining unit. This is current policy behavior, not automatically a defect; specify retry/resume/rollback separately.
+A previous receipt remains in the global state after a second, different request partially delivers. The extended probe uses a five-unit request beyond the fixed three-unit published suite. Checks still pass, illustrating limits of a global receipt and a hard-coded three-unit threshold.
+
+RECOMMENDATIONS
+Derive totals from holdings; verify debits, credits, and authority independently of status strings.
+Use request-scoped receipts and append-only ordered events to test completion timing.
+Specify recovery after partial delivery and detect request-ID reuse with changed payloads.
+Separate executed behavior, assumed rules, and checker adequacy. No extraordinary QC capability or canon has been validated.
+
+The accompanying JSON contains exact mutated records, assertion outputs, source hashes, Python version, and reproduction results.

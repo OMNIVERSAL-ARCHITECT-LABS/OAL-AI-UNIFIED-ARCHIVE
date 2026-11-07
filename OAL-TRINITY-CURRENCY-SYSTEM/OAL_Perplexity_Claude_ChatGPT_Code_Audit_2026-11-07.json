@@ -1,0 +1,405 @@
+{
+  "reviewer": "Perplexity",
+  "date": "2026-11-07",
+  "scope": "Local uploaded artifacts only; no repository access or physical QC validation",
+  "python": "3.12.8",
+  "source_hashes": {
+    "claude_pilot_reference_model.py": "77f17c85c275eca1c267915ab28a8e6bec760035989c2939ce20ea6f3698d597",
+    "OAL_ChatGPT_Pilot_001_Model_v0.1.py": "29da5251d83f5c2b79f03b070aefdf0f305e6214a542cae096c6cfe7bb70226a",
+    "OAL_ChatGPT_Pilot_001_Execution_Results_v0.1.json": "073f6fc8a1a8668d50bd967a53d42204f35700a76116929f56a201ba1b48c09e",
+    "claude_pilot_run_log.txt": "ca2d4c7912c83a05585cbad6315e61ea68f067febe692f0fc80c7a57502d4032"
+  },
+  "reproduction": {
+    "chatgpt_exit_code": 0,
+    "chatgpt_summary": {
+      "cases": 11,
+      "check_failures": 0,
+      "invariant_checks": 133,
+      "modes": 4,
+      "records": 44,
+      "statuses": {
+        "EVALUATED_NO_DELIVERY": 7,
+        "INCOHERENT_TARGET": 4,
+        "INSUFFICIENT_INVENTORY": 1,
+        "NONTRANSFERABLE": 3,
+        "NO_SELLER": 3,
+        "REPLAY_NO_OP": 3,
+        "SELLER_UNKNOWN": 3,
+        "SETTLED": 3,
+        "UNAUTHORIZED": 3,
+        "UNDEFINED_TARGET": 8,
+        "UNDERDETERMINED_ACCOUNTING": 2,
+        "VALUATION_UNAVAILABLE": 4
+      }
+    },
+    "chatgpt_json_byte_identical": true,
+    "claude_exit_code": 0,
+    "claude_stdout_identical": true,
+    "claude_F01_records": 48,
+    "claude_original_defects": [
+      {
+        "defect": "D1 receipt issued at start of delivery",
+        "caught_by": [
+          "A3_receipt_only_when_complete"
+        ],
+        "caught": true
+      },
+      {
+        "defect": "D2 transfer that also creates a unit",
+        "caught_by": [
+          "A1_conservation_declared"
+        ],
+        "caught": true
+      },
+      {
+        "defect": "D3 NCOIN emitted on any failure",
+        "caught_by": [
+          "A4_no_automatic_NCOIN"
+        ],
+        "caught": true
+      }
+    ]
+  },
+  "chatgpt_check_counts": {
+    "no_mutation": 39,
+    "no_automatic_ncoin": 44,
+    "no_premature_1coin": 44,
+    "conserve_total": 1,
+    "recipient_delivery": 1,
+    "creation_delta": 2,
+    "original_inventory_preserved": 2
+  },
+  "additional_executed_probes": [
+    {
+      "model": "ChatGPT",
+      "probe": "Create reports settlement but credits no units",
+      "input_kind": "post-execution record mutation",
+      "record": {
+        "after": {
+          "A": 10,
+          "B": 0,
+          "total": 13
+        },
+        "assumed_capability": "P2_CREATE",
+        "before": {
+          "A": 10,
+          "B": 0,
+          "total": 10
+        },
+        "case_id": "RB-BASE",
+        "event": "STIPULATED_RESOURCE_CREATION",
+        "evidence_type": "EXECUTED_STIPULATED_MODEL",
+        "mode": "P2_CREATE",
+        "ncoin_issued": false,
+        "note": "Conditional creation changes the resource total by the amount created.",
+        "onecoin_issued": false,
+        "qc_state": "SETTLED_RESOURCE_DELIVERY",
+        "settled": true,
+        "status": "SETTLED",
+        "valuation": {
+          "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+          "domain": "synthetic_resource_quantity",
+          "quantity": 3,
+          "unit": "resource_unit"
+        }
+      },
+      "checks": [
+        {
+          "case": "RB-BASE",
+          "mode": "P2_CREATE",
+          "rule": "creation_delta",
+          "pass": true
+        },
+        {
+          "case": "RB-BASE",
+          "mode": "P2_CREATE",
+          "rule": "original_inventory_preserved",
+          "pass": true
+        },
+        {
+          "case": "RB-BASE",
+          "mode": "P2_CREATE",
+          "rule": "no_automatic_ncoin",
+          "pass": true
+        },
+        {
+          "case": "RB-BASE",
+          "mode": "P2_CREATE",
+          "rule": "no_premature_1coin",
+          "pass": true
+        }
+      ],
+      "caught": false
+    },
+    {
+      "model": "ChatGPT",
+      "probe": "Transfer preserves stale total while A is not debited",
+      "input_kind": "post-execution record mutation",
+      "record": {
+        "after": {
+          "A": 10,
+          "B": 3,
+          "total": 10
+        },
+        "assumed_capability": "P1_TRANSFER",
+        "before": {
+          "A": 10,
+          "B": 0,
+          "total": 10
+        },
+        "case_id": "RB-BASE",
+        "event": "EXISTING_RESOURCE_TRANSFER",
+        "evidence_type": "EXECUTED_STIPULATED_MODEL",
+        "mode": "P1_TRANSFER",
+        "ncoin_issued": false,
+        "note": "Conditional delivery and inventory conservation verified.",
+        "onecoin_issued": false,
+        "qc_state": "SETTLED_RESOURCE_DELIVERY",
+        "settled": true,
+        "status": "SETTLED",
+        "valuation": {
+          "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+          "domain": "synthetic_resource_quantity",
+          "quantity": 3,
+          "unit": "resource_unit"
+        }
+      },
+      "checks": [
+        {
+          "case": "RB-BASE",
+          "mode": "P1_TRANSFER",
+          "rule": "conserve_total",
+          "pass": true
+        },
+        {
+          "case": "RB-BASE",
+          "mode": "P1_TRANSFER",
+          "rule": "recipient_delivery",
+          "pass": true
+        },
+        {
+          "case": "RB-BASE",
+          "mode": "P1_TRANSFER",
+          "rule": "no_automatic_ncoin",
+          "pass": true
+        },
+        {
+          "case": "RB-BASE",
+          "mode": "P1_TRANSFER",
+          "rule": "no_premature_1coin",
+          "pass": true
+        }
+      ],
+      "caught": false
+    },
+    {
+      "model": "ChatGPT",
+      "probe": "Unauthorized record falsely marked settled",
+      "input_kind": "post-execution record mutation",
+      "record": {
+        "after": {
+          "A": 7,
+          "B": 3,
+          "total": 10
+        },
+        "assumed_capability": "P1_TRANSFER",
+        "before": {
+          "A": 10,
+          "B": 0,
+          "total": 10
+        },
+        "case_id": "RB-DENIED",
+        "event": null,
+        "evidence_type": "EXECUTED_STIPULATED_MODEL",
+        "mode": "P1_TRANSFER",
+        "ncoin_issued": false,
+        "note": "Required recipient/transfer authorization not present.",
+        "onecoin_issued": false,
+        "qc_state": "SETTLED_RESOURCE_DELIVERY",
+        "settled": true,
+        "status": "SETTLED",
+        "valuation": {
+          "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+          "domain": "synthetic_resource_quantity",
+          "quantity": 3,
+          "unit": "resource_unit"
+        }
+      },
+      "checks": [
+        {
+          "case": "RB-DENIED",
+          "mode": "P1_TRANSFER",
+          "rule": "conserve_total",
+          "pass": true
+        },
+        {
+          "case": "RB-DENIED",
+          "mode": "P1_TRANSFER",
+          "rule": "recipient_delivery",
+          "pass": true
+        },
+        {
+          "case": "RB-DENIED",
+          "mode": "P1_TRANSFER",
+          "rule": "no_automatic_ncoin",
+          "pass": true
+        },
+        {
+          "case": "RB-DENIED",
+          "mode": "P1_TRANSFER",
+          "rule": "no_premature_1coin",
+          "pass": true
+        }
+      ],
+      "caught": false
+    },
+    {
+      "model": "Claude",
+      "probe": "Premature receipt with uninterrupted delivery",
+      "input_kind": "existing receipt_mode option",
+      "status": "RESOLVED_SETTLED",
+      "state": {
+        "A": [
+          "u1",
+          "u2",
+          "u3",
+          "u4",
+          "u5",
+          "u6",
+          "u7"
+        ],
+        "B": [
+          "u10",
+          "u9",
+          "u8"
+        ],
+        "next": 11,
+        "log": [
+          "X:MOVE u10 A->B",
+          "X:MOVE u9 A->B",
+          "X:MOVE u8 A->B"
+        ],
+        "receipt": "ISSUED",
+        "ncoin": [],
+        "done": {
+          "X": "RESOLVED_SETTLED"
+        }
+      },
+      "checks": {
+        "A1_conservation_declared": true,
+        "A2_no_settled_without_delivery": true,
+        "A3_receipt_only_when_complete": true,
+        "A4_no_automatic_NCOIN": true
+      },
+      "caught": false
+    },
+    {
+      "model": "Claude",
+      "probe": "Retry partial delivery under DEDUP",
+      "input_kind": "sequential function calls",
+      "first_status": "PARTIAL",
+      "retry": [
+        "PARTIAL",
+        "DUPLICATE_NOT_REEXECUTED"
+      ],
+      "before_retry": {
+        "A": [
+          "u1",
+          "u2",
+          "u3",
+          "u4",
+          "u5",
+          "u6",
+          "u7",
+          "u8"
+        ],
+        "B": [
+          "u10",
+          "u9"
+        ],
+        "next": 11,
+        "log": [
+          "X:MOVE u10 A->B",
+          "X:MOVE u9 A->B"
+        ],
+        "receipt": null,
+        "ncoin": [],
+        "done": {
+          "X": "PARTIAL"
+        }
+      },
+      "after_retry": {
+        "A": [
+          "u1",
+          "u2",
+          "u3",
+          "u4",
+          "u5",
+          "u6",
+          "u7",
+          "u8"
+        ],
+        "B": [
+          "u10",
+          "u9"
+        ],
+        "next": 11,
+        "log": [
+          "X:MOVE u10 A->B",
+          "X:MOVE u9 A->B",
+          "X:DUPLICATE returned prior result"
+        ],
+        "receipt": null,
+        "ncoin": [],
+        "done": {
+          "X": "PARTIAL"
+        }
+      }
+    },
+    {
+      "model": "Claude",
+      "probe": "Prior receipt remains after different partial request",
+      "input_kind": "sequential function calls beyond fixed 3-unit suite",
+      "status": "PARTIAL",
+      "state": {
+        "A": [
+          "u1",
+          "u2",
+          "u3",
+          "u4"
+        ],
+        "B": [
+          "u10",
+          "u9",
+          "u8",
+          "u7",
+          "u6",
+          "u5"
+        ],
+        "next": 11,
+        "log": [
+          "X:MOVE u10 A->B",
+          "X:MOVE u9 A->B",
+          "X:MOVE u8 A->B",
+          "Y:MOVE u7 A->B",
+          "Y:MOVE u6 A->B",
+          "Y:MOVE u5 A->B"
+        ],
+        "receipt": "ISSUED",
+        "ncoin": [],
+        "done": {
+          "X": "RESOLVED_SETTLED",
+          "Y": "PARTIAL"
+        }
+      },
+      "checks": {
+        "A1_conservation_declared": true,
+        "A2_no_settled_without_delivery": true,
+        "A3_receipt_only_when_complete": true,
+        "A4_no_automatic_NCOIN": true
+      },
+      "all_pass": true
+    }
+  ],
+  "interpretation": "Record mutations test the verifier, not whether original execute() generates the defective record. Claude receipt probe uses the existing AT_START setting; retry and variable-quantity probes extend beyond the published fresh-state fixture."
+}
