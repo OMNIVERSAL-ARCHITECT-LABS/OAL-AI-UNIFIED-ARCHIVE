@@ -1,0 +1,2201 @@
+{
+  "checks": [
+    {
+      "case": "RB-BASE",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-BASE",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-BASE",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-BASE",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "conserve_total"
+    },
+    {
+      "case": "RB-BASE",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "recipient_delivery"
+    },
+    {
+      "case": "RB-BASE",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-BASE",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-BASE",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "creation_delta"
+    },
+    {
+      "case": "RB-BASE",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "original_inventory_preserved"
+    },
+    {
+      "case": "RB-BASE",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-BASE",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-BASE",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-BASE",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-SHORT",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-SHORT",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-SHORT",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-SHORT",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-SHORT",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-SHORT",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-SHORT",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "creation_delta"
+    },
+    {
+      "case": "RB-SHORT",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "original_inventory_preserved"
+    },
+    {
+      "case": "RB-SHORT",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-SHORT",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-SHORT",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-SHORT",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-DENIED",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-DENIED",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-DENIED",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-DENIED",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-DENIED",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-DENIED",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-DENIED",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-DENIED",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-DENIED",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-DENIED",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-DENIED",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-DENIED",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-UNTYPED",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-UNTYPED",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-UNTYPED",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-UNTYPED",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-UNTYPED",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-UNTYPED",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-UNTYPED",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-UNTYPED",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-UNTYPED",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-UNTYPED",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-UNTYPED",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-UNTYPED",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-REPLAY",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-REPLAY",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-REPLAY",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-REPLAY",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-REPLAY",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-REPLAY",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-REPLAY",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-REPLAY",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-REPLAY",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "RB-REPLAY",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "RB-REPLAY",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "RB-REPLAY",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-UNDEFINED",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-UNDEFINED",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-UNDEFINED",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-UNDEFINED",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-UNDEFINED",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-UNDEFINED",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-UNDEFINED",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-UNDEFINED",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-UNDEFINED",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-UNDEFINED",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-UNDEFINED",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-UNDEFINED",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-INCOHERENT",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-INCOHERENT",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-INCOHERENT",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-INCOHERENT",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-INCOHERENT",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-INCOHERENT",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-INCOHERENT",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-INCOHERENT",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-INCOHERENT",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-INCOHERENT",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-INCOHERENT",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-INCOHERENT",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-NOVALUE",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-NOVALUE",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-NOVALUE",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-NOVALUE",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-NOVALUE",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-NOVALUE",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-NOVALUE",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-NOVALUE",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-NOVALUE",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-NOVALUE",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-NOVALUE",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-NOVALUE",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-SELLER-UNKNOWN",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-SELLER-UNKNOWN",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-SELLER-UNKNOWN",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-SELLER-UNKNOWN",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-SELLER-UNKNOWN",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-SELLER-UNKNOWN",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-SELLER-UNKNOWN",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-SELLER-UNKNOWN",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-SELLER-UNKNOWN",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-SELLER-UNKNOWN",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-SELLER-UNKNOWN",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-SELLER-UNKNOWN",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-NO-SELLER",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-NO-SELLER",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-NO-SELLER",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-NO-SELLER",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-NO-SELLER",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-NO-SELLER",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-NO-SELLER",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-NO-SELLER",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-NO-SELLER",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-NO-SELLER",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-NO-SELLER",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-NO-SELLER",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-NONTRANSFER",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-NONTRANSFER",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-NONTRANSFER",
+      "mode": "P0_EVALUATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-NONTRANSFER",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-NONTRANSFER",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-NONTRANSFER",
+      "mode": "P1_TRANSFER",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-NONTRANSFER",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-NONTRANSFER",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-NONTRANSFER",
+      "mode": "P2_CREATE",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    },
+    {
+      "case": "BR-NONTRANSFER",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_mutation"
+    },
+    {
+      "case": "BR-NONTRANSFER",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_automatic_ncoin"
+    },
+    {
+      "case": "BR-NONTRANSFER",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "pass": true,
+      "rule": "no_premature_1coin"
+    }
+  ],
+  "date": "2026-11-07",
+  "execution_environment": "Python standard library, deterministic discrete state transitions",
+  "identity": "OAL-CURR-PILOT-001 / ChatGPT independent simulation v0.1",
+  "modes": [
+    "P0_EVALUATE",
+    "P1_TRANSFER",
+    "P2_CREATE",
+    "P3_ENACT_UNDERSPECIFIED"
+  ],
+  "ncoin_rule": "No NCOIN is auto-issued for any status. Independent consequence models remain unfrozen.",
+  "onecoin_rule": "No 1COIN is auto-issued. A separate settlement comparison is described in report.",
+  "premise": "QC(T)=V(T) is a conceptual stipulation; no physical extraordinary capability is demonstrated",
+  "records": [
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P0_EVALUATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-BASE",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P0_EVALUATE",
+      "ncoin_issued": false,
+      "note": "Evaluation-only comparator has no delivery capability.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "EVALUATED_NO_DELIVERY",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 7,
+        "B": 3,
+        "total": 10
+      },
+      "assumed_capability": "P1_TRANSFER",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-BASE",
+      "event": "EXISTING_RESOURCE_TRANSFER",
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P1_TRANSFER",
+      "ncoin_issued": false,
+      "note": "Conditional delivery and inventory conservation verified.",
+      "onecoin_issued": false,
+      "qc_state": "SETTLED_RESOURCE_DELIVERY",
+      "settled": true,
+      "status": "SETTLED",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 3,
+        "total": 13
+      },
+      "assumed_capability": "P2_CREATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-BASE",
+      "event": "STIPULATED_RESOURCE_CREATION",
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P2_CREATE",
+      "ncoin_issued": false,
+      "note": "Conditional creation changes the resource total by the amount created.",
+      "onecoin_issued": false,
+      "qc_state": "SETTLED_RESOURCE_DELIVERY",
+      "settled": true,
+      "status": "SETTLED",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": null,
+        "B": 3,
+        "total": null
+      },
+      "assumed_capability": "P3_ENACT_UNDERSPECIFIED",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-BASE",
+      "event": "OUTCOME_POSTCONDITION_ONLY",
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "ncoin_issued": false,
+      "note": "B postcondition can be asserted, but A, conservation and mechanism are unspecified.",
+      "onecoin_issued": false,
+      "qc_state": "OUTCOME_ASSERTED_ACCOUNTING_INCOMPLETE",
+      "settled": null,
+      "status": "UNDERDETERMINED_ACCOUNTING",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 2,
+        "B": 0,
+        "total": 2
+      },
+      "assumed_capability": "P0_EVALUATE",
+      "before": {
+        "A": 2,
+        "B": 0,
+        "total": 2
+      },
+      "case_id": "RB-SHORT",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P0_EVALUATE",
+      "ncoin_issued": false,
+      "note": "Evaluation-only comparator has no delivery capability.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "EVALUATED_NO_DELIVERY",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 2,
+        "B": 0,
+        "total": 2
+      },
+      "assumed_capability": "P1_TRANSFER",
+      "before": {
+        "A": 2,
+        "B": 0,
+        "total": 2
+      },
+      "case_id": "RB-SHORT",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P1_TRANSFER",
+      "ncoin_issued": false,
+      "note": "Only existing units may be transferred in P1.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "INSUFFICIENT_INVENTORY",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 2,
+        "B": 3,
+        "total": 5
+      },
+      "assumed_capability": "P2_CREATE",
+      "before": {
+        "A": 2,
+        "B": 0,
+        "total": 2
+      },
+      "case_id": "RB-SHORT",
+      "event": "STIPULATED_RESOURCE_CREATION",
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P2_CREATE",
+      "ncoin_issued": false,
+      "note": "Conditional creation changes the resource total by the amount created.",
+      "onecoin_issued": false,
+      "qc_state": "SETTLED_RESOURCE_DELIVERY",
+      "settled": true,
+      "status": "SETTLED",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": null,
+        "B": 3,
+        "total": null
+      },
+      "assumed_capability": "P3_ENACT_UNDERSPECIFIED",
+      "before": {
+        "A": 2,
+        "B": 0,
+        "total": 2
+      },
+      "case_id": "RB-SHORT",
+      "event": "OUTCOME_POSTCONDITION_ONLY",
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "ncoin_issued": false,
+      "note": "B postcondition can be asserted, but A, conservation and mechanism are unspecified.",
+      "onecoin_issued": false,
+      "qc_state": "OUTCOME_ASSERTED_ACCOUNTING_INCOMPLETE",
+      "settled": null,
+      "status": "UNDERDETERMINED_ACCOUNTING",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P0_EVALUATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-DENIED",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P0_EVALUATE",
+      "ncoin_issued": false,
+      "note": "Evaluation-only comparator has no delivery capability.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "EVALUATED_NO_DELIVERY",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P1_TRANSFER",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-DENIED",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P1_TRANSFER",
+      "ncoin_issued": false,
+      "note": "Required recipient/transfer authorization not present.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "UNAUTHORIZED",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P2_CREATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-DENIED",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P2_CREATE",
+      "ncoin_issued": false,
+      "note": "Required recipient/transfer authorization not present.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "UNAUTHORIZED",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P3_ENACT_UNDERSPECIFIED",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-DENIED",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "ncoin_issued": false,
+      "note": "Required recipient/transfer authorization not present.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "UNAUTHORIZED",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P0_EVALUATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-UNTYPED",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P0_EVALUATE",
+      "ncoin_issued": false,
+      "note": "No typed referent; neither valuation nor transfer is assumed.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "UNDEFINED_TARGET",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P1_TRANSFER",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-UNTYPED",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P1_TRANSFER",
+      "ncoin_issued": false,
+      "note": "No typed referent; neither valuation nor transfer is assumed.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "UNDEFINED_TARGET",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P2_CREATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-UNTYPED",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P2_CREATE",
+      "ncoin_issued": false,
+      "note": "No typed referent; neither valuation nor transfer is assumed.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "UNDEFINED_TARGET",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P3_ENACT_UNDERSPECIFIED",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-UNTYPED",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "ncoin_issued": false,
+      "note": "No typed referent; neither valuation nor transfer is assumed.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "UNDEFINED_TARGET",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P0_EVALUATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-REPLAY",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P0_EVALUATE",
+      "ncoin_issued": false,
+      "note": "Evaluation-only comparator has no delivery capability.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "EVALUATED_NO_DELIVERY",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P1_TRANSFER",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-REPLAY",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P1_TRANSFER",
+      "ncoin_issued": false,
+      "note": "Run card stipulates request-idempotent delivery; previously processed.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "REPLAY_NO_OP",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P2_CREATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-REPLAY",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P2_CREATE",
+      "ncoin_issued": false,
+      "note": "Run card stipulates request-idempotent delivery; previously processed.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "REPLAY_NO_OP",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P3_ENACT_UNDERSPECIFIED",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "RB-REPLAY",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "ncoin_issued": false,
+      "note": "Run card stipulates request-idempotent delivery; previously processed.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "REPLAY_NO_OP",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P0_EVALUATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-UNDEFINED",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P0_EVALUATE",
+      "ncoin_issued": false,
+      "note": "No typed referent; neither valuation nor transfer is assumed.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "UNDEFINED_TARGET",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P1_TRANSFER",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-UNDEFINED",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P1_TRANSFER",
+      "ncoin_issued": false,
+      "note": "No typed referent; neither valuation nor transfer is assumed.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "UNDEFINED_TARGET",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P2_CREATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-UNDEFINED",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P2_CREATE",
+      "ncoin_issued": false,
+      "note": "No typed referent; neither valuation nor transfer is assumed.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "UNDEFINED_TARGET",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P3_ENACT_UNDERSPECIFIED",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-UNDEFINED",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "ncoin_issued": false,
+      "note": "No typed referent; neither valuation nor transfer is assumed.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "UNDEFINED_TARGET",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P0_EVALUATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-INCOHERENT",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P0_EVALUATE",
+      "ncoin_issued": false,
+      "note": "Contradiction with unchanged target definitions.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "INCOHERENT_TARGET",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P1_TRANSFER",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-INCOHERENT",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P1_TRANSFER",
+      "ncoin_issued": false,
+      "note": "Contradiction with unchanged target definitions.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "INCOHERENT_TARGET",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P2_CREATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-INCOHERENT",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P2_CREATE",
+      "ncoin_issued": false,
+      "note": "Contradiction with unchanged target definitions.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "INCOHERENT_TARGET",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P3_ENACT_UNDERSPECIFIED",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-INCOHERENT",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "ncoin_issued": false,
+      "note": "Contradiction with unchanged target definitions.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "INCOHERENT_TARGET",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P0_EVALUATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-NOVALUE",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P0_EVALUATE",
+      "ncoin_issued": false,
+      "note": "Coherent but no declared value function output.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "VALUATION_UNAVAILABLE",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P1_TRANSFER",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-NOVALUE",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P1_TRANSFER",
+      "ncoin_issued": false,
+      "note": "Coherent but no declared value function output.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "VALUATION_UNAVAILABLE",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P2_CREATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-NOVALUE",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P2_CREATE",
+      "ncoin_issued": false,
+      "note": "Coherent but no declared value function output.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "VALUATION_UNAVAILABLE",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P3_ENACT_UNDERSPECIFIED",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-NOVALUE",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "ncoin_issued": false,
+      "note": "Coherent but no declared value function output.",
+      "onecoin_issued": false,
+      "qc_state": "UNRESOLVED",
+      "settled": false,
+      "status": "VALUATION_UNAVAILABLE",
+      "valuation": null
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P0_EVALUATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-SELLER-UNKNOWN",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P0_EVALUATE",
+      "ncoin_issued": false,
+      "note": "Evaluation-only comparator has no delivery capability.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "EVALUATED_NO_DELIVERY",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P1_TRANSFER",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-SELLER-UNKNOWN",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P1_TRANSFER",
+      "ncoin_issued": false,
+      "note": "Counterparty authority is epistemically unresolved.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "SELLER_UNKNOWN",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P2_CREATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-SELLER-UNKNOWN",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P2_CREATE",
+      "ncoin_issued": false,
+      "note": "Counterparty authority is epistemically unresolved.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "SELLER_UNKNOWN",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P3_ENACT_UNDERSPECIFIED",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-SELLER-UNKNOWN",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "ncoin_issued": false,
+      "note": "Counterparty authority is epistemically unresolved.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "SELLER_UNKNOWN",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P0_EVALUATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-NO-SELLER",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P0_EVALUATE",
+      "ncoin_issued": false,
+      "note": "Evaluation-only comparator has no delivery capability.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "EVALUATED_NO_DELIVERY",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P1_TRANSFER",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-NO-SELLER",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P1_TRANSFER",
+      "ncoin_issued": false,
+      "note": "Structural absence of a recognized seller.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "NO_SELLER",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P2_CREATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-NO-SELLER",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P2_CREATE",
+      "ncoin_issued": false,
+      "note": "Structural absence of a recognized seller.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "NO_SELLER",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P3_ENACT_UNDERSPECIFIED",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-NO-SELLER",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "ncoin_issued": false,
+      "note": "Structural absence of a recognized seller.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "NO_SELLER",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P0_EVALUATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-NONTRANSFER",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P0_EVALUATE",
+      "ncoin_issued": false,
+      "note": "Evaluation-only comparator has no delivery capability.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "EVALUATED_NO_DELIVERY",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P1_TRANSFER",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-NONTRANSFER",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P1_TRANSFER",
+      "ncoin_issued": false,
+      "note": "The stipulated target cannot be transferred/settled.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "NONTRANSFERABLE",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P2_CREATE",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-NONTRANSFER",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P2_CREATE",
+      "ncoin_issued": false,
+      "note": "The stipulated target cannot be transferred/settled.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "NONTRANSFERABLE",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    },
+    {
+      "after": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "assumed_capability": "P3_ENACT_UNDERSPECIFIED",
+      "before": {
+        "A": 10,
+        "B": 0,
+        "total": 10
+      },
+      "case_id": "BR-NONTRANSFER",
+      "event": null,
+      "evidence_type": "EXECUTED_STIPULATED_MODEL",
+      "mode": "P3_ENACT_UNDERSPECIFIED",
+      "ncoin_issued": false,
+      "note": "The stipulated target cannot be transferred/settled.",
+      "onecoin_issued": false,
+      "qc_state": "EVALUATED",
+      "settled": false,
+      "status": "NONTRANSFERABLE",
+      "valuation": {
+        "conversion": "one unit of resource target maps to one synthetic resource-equivalence unit",
+        "domain": "synthetic_resource_quantity",
+        "quantity": 3,
+        "unit": "resource_unit"
+      }
+    }
+  ],
+  "source_cases": [
+    {
+      "a": 10,
+      "b": 0,
+      "case_id": "RB-BASE",
+      "processed": false,
+      "qty": 3,
+      "reason": "F01 baseline",
+      "recipient_authorized": true,
+      "seller_status": "PRESENT",
+      "target_status": "COHERENT",
+      "transfer_authorized": true,
+      "transferable": true,
+      "unit": "resource_unit",
+      "valuation_available": true
+    },
+    {
+      "a": 2,
+      "b": 0,
+      "case_id": "RB-SHORT",
+      "processed": false,
+      "qty": 3,
+      "reason": "insufficient existing resource",
+      "recipient_authorized": true,
+      "seller_status": "PRESENT",
+      "target_status": "COHERENT",
+      "transfer_authorized": true,
+      "transferable": true,
+      "unit": "resource_unit",
+      "valuation_available": true
+    },
+    {
+      "a": 10,
+      "b": 0,
+      "case_id": "RB-DENIED",
+      "processed": false,
+      "qty": 3,
+      "reason": "recipient authorization refused",
+      "recipient_authorized": false,
+      "seller_status": "PRESENT",
+      "target_status": "COHERENT",
+      "transfer_authorized": true,
+      "transferable": true,
+      "unit": "resource_unit",
+      "valuation_available": true
+    },
+    {
+      "a": 10,
+      "b": 0,
+      "case_id": "RB-UNTYPED",
+      "processed": false,
+      "qty": 3,
+      "reason": "requested 3 of unspecified unit",
+      "recipient_authorized": true,
+      "seller_status": "PRESENT",
+      "target_status": "COHERENT",
+      "transfer_authorized": true,
+      "transferable": true,
+      "unit": null,
+      "valuation_available": true
+    },
+    {
+      "a": 10,
+      "b": 0,
+      "case_id": "RB-REPLAY",
+      "processed": true,
+      "qty": 3,
+      "reason": "identical request already fulfilled",
+      "recipient_authorized": true,
+      "seller_status": "PRESENT",
+      "target_status": "COHERENT",
+      "transfer_authorized": true,
+      "transferable": true,
+      "unit": "resource_unit",
+      "valuation_available": true
+    },
+    {
+      "a": 10,
+      "b": 0,
+      "case_id": "BR-UNDEFINED",
+      "processed": false,
+      "qty": 3,
+      "reason": "undefined referent",
+      "recipient_authorized": true,
+      "seller_status": "PRESENT",
+      "target_status": "REFERENT_UNDEFINED",
+      "transfer_authorized": true,
+      "transferable": true,
+      "unit": "resource_unit",
+      "valuation_available": true
+    },
+    {
+      "a": 10,
+      "b": 0,
+      "case_id": "BR-INCOHERENT",
+      "processed": false,
+      "qty": 3,
+      "reason": "contradiction under fixed definitions",
+      "recipient_authorized": true,
+      "seller_status": "PRESENT",
+      "target_status": "INCOHERENT",
+      "transfer_authorized": true,
+      "transferable": true,
+      "unit": "resource_unit",
+      "valuation_available": true
+    },
+    {
+      "a": 10,
+      "b": 0,
+      "case_id": "BR-NOVALUE",
+      "processed": false,
+      "qty": 3,
+      "reason": "coherent target with unavailable valuation",
+      "recipient_authorized": true,
+      "seller_status": "PRESENT",
+      "target_status": "COHERENT",
+      "transfer_authorized": true,
+      "transferable": true,
+      "unit": "resource_unit",
+      "valuation_available": false
+    },
+    {
+      "a": 10,
+      "b": 0,
+      "case_id": "BR-SELLER-UNKNOWN",
+      "processed": false,
+      "qty": 3,
+      "reason": "seller identity unknown",
+      "recipient_authorized": true,
+      "seller_status": "UNKNOWN",
+      "target_status": "COHERENT",
+      "transfer_authorized": true,
+      "transferable": true,
+      "unit": "resource_unit",
+      "valuation_available": true
+    },
+    {
+      "a": 10,
+      "b": 0,
+      "case_id": "BR-NO-SELLER",
+      "processed": false,
+      "qty": 3,
+      "reason": "no seller exists",
+      "recipient_authorized": true,
+      "seller_status": "ABSENT",
+      "target_status": "COHERENT",
+      "transfer_authorized": true,
+      "transferable": true,
+      "unit": "resource_unit",
+      "valuation_available": true
+    },
+    {
+      "a": 10,
+      "b": 0,
+      "case_id": "BR-NONTRANSFER",
+      "processed": false,
+      "qty": 3,
+      "reason": "coherent non-transferable target",
+      "recipient_authorized": true,
+      "seller_status": "PRESENT",
+      "target_status": "COHERENT",
+      "transfer_authorized": true,
+      "transferable": false,
+      "unit": "resource_unit",
+      "valuation_available": true
+    }
+  ],
+  "status": "OWNER_DIRECTED_INDEPENDENT_EXPLORATION_NOT_CANON",
+  "summary": {
+    "cases": 11,
+    "check_failures": 0,
+    "invariant_checks": 133,
+    "modes": 4,
+    "records": 44,
+    "statuses": {
+      "EVALUATED_NO_DELIVERY": 7,
+      "INCOHERENT_TARGET": 4,
+      "INSUFFICIENT_INVENTORY": 1,
+      "NONTRANSFERABLE": 3,
+      "NO_SELLER": 3,
+      "REPLAY_NO_OP": 3,
+      "SELLER_UNKNOWN": 3,
+      "SETTLED": 3,
+      "UNAUTHORIZED": 3,
+      "UNDEFINED_TARGET": 8,
+      "UNDERDETERMINED_ACCOUNTING": 2,
+      "VALUATION_UNAVAILABLE": 4
+    }
+  }
+}
