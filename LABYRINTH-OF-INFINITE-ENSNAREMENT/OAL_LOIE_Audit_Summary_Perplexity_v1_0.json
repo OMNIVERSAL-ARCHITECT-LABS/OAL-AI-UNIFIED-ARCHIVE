@@ -1,0 +1,9 @@
+{
+  "cases": 14,
+  "role_variants": 42,
+  "baseline_matches": 42,
+  "role_changes_baseline": 0,
+  "founder_guilt_disagreements": 11,
+  "current_immunity_disagreements": 11,
+  "scope": "Deterministic synthetic regression fixture, not empirical legal or physical validation."
+}
