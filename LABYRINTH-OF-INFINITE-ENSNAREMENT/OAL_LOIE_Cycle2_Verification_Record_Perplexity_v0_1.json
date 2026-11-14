@@ -1,0 +1,186 @@
+{
+  "preparer": "Perplexity",
+  "date": "2026-11-13",
+  "document_id": "OAL-LOIE-C2-RECON-PERPLEXITY-001",
+  "pdf_pages": 25,
+  "narrative_words": 9856,
+  "pdf_open_and_text_end_checks": "PASS",
+  "pdf_all_pages_rasterized": "PASS",
+  "pdf_no_blank_raster_pages": "PASS",
+  "pdf_text_characters_within_page_bounds": "PASS",
+  "pdf_human_visual_review": "NOT PERFORMED; automated raster/content/bounds checks only",
+  "docx_zip_crc_xml_and_python_docx_reopen": "PASS",
+  "docx_text_matches_markdown_master": "PASS after whitespace normalization",
+  "markdown_utf8_roundtrip": "PASS",
+  "docx_layout_render": "NOT VERIFIED: LibreOffice source-load error also occurred for minimal control DOCX; usual Writer import libraries absent at checked paths",
+  "audit_fresh_subprocess_reproduction": "PASS",
+  "audit_summary": {
+    "fixtures": 24,
+    "fixture_matches": 24,
+    "mutants": 6,
+    "mutants_detected": 6,
+    "mutation_comparisons": 144,
+    "mutation_differences": 11,
+    "enumerated_states": 1296,
+    "candidate_gate_violations": 0,
+    "role_metadata_checks": 72,
+    "role_differences": 0,
+    "external_reviewer_trials": 0,
+    "scope": "Same-author synthetic regression and bounded state enumeration, not blind testing or moral validation."
+  },
+  "correction_records": 34,
+  "external_evidence_records": 12,
+  "checks_do_not_prove": "Recipient download/viewer compatibility, normative correctness, independent blind validation or physical containment",
+  "raster_pages": [
+    {
+      "page": "page-01",
+      "pixels_below_180": 32323,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-02",
+      "pixels_below_180": 29922,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-03",
+      "pixels_below_180": 27218,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-04",
+      "pixels_below_180": 29143,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-05",
+      "pixels_below_180": 28876,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-06",
+      "pixels_below_180": 30137,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-07",
+      "pixels_below_180": 29281,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-08",
+      "pixels_below_180": 29091,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-09",
+      "pixels_below_180": 26859,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-10",
+      "pixels_below_180": 28221,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-11",
+      "pixels_below_180": 30722,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-12",
+      "pixels_below_180": 32298,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-13",
+      "pixels_below_180": 34730,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-14",
+      "pixels_below_180": 32383,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-15",
+      "pixels_below_180": 20286,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-16",
+      "pixels_below_180": 20421,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-17",
+      "pixels_below_180": 21332,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-18",
+      "pixels_below_180": 22455,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-19",
+      "pixels_below_180": 18559,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-20",
+      "pixels_below_180": 19184,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-21",
+      "pixels_below_180": 18171,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-22",
+      "pixels_below_180": 19740,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-23",
+      "pixels_below_180": 20420,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-24",
+      "pixels_below_180": 22103,
+      "width": 455,
+      "height": 644
+    },
+    {
+      "page": "page-25",
+      "pixels_below_180": 11189,
+      "width": 455,
+      "height": 644
+    }
+  ]
+}

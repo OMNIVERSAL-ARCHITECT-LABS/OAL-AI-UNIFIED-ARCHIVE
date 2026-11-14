@@ -1,0 +1,721 @@
+[
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P01",
+    "title": "Established threat and assured review",
+    "expected": "INTERVENTION_REVIEW_CANDIDATE"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "absent",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P02",
+    "title": "Power without a present ground",
+    "expected": "NO_CUSTODY_GROUND"
+  },
+  {
+    "identity": "clear",
+    "evidence": "forged",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P03",
+    "title": "Forged allegation",
+    "expected": "REJECT_BASIS"
+  },
+  {
+    "identity": "clear",
+    "evidence": "incomplete",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P04",
+    "title": "Incomplete evidence",
+    "expected": "INDETERMINATE_EVIDENCE"
+  },
+  {
+    "identity": "uncertain",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P05",
+    "title": "Identity unresolved",
+    "expected": "INDETERMINATE_EVIDENCE"
+  },
+  {
+    "identity": "contradicted",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P06",
+    "title": "Identity contradicted",
+    "expected": "REJECT_BASIS"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "contested",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P07",
+    "title": "Contested jurisdiction",
+    "expected": "INDETERMINATE_JURISDICTION"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "absent",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P08",
+    "title": "Absent jurisdiction",
+    "expected": "INDETERMINATE_JURISDICTION"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": true,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P09",
+    "title": "Sole reviewer benefits",
+    "expected": "INDETERMINATE_EVALUATOR"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": true,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P10",
+    "title": "Sole reviewer reports to respondent",
+    "expected": "INDETERMINATE_EVALUATOR"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "legacy_root"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P11",
+    "title": "All evidence depends on disputed substrate",
+    "expected": "INDETERMINATE_EVALUATOR"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [],
+    "id": "P12",
+    "title": "No reviewer available",
+    "expected": "INDETERMINATE_EVALUATOR"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "legacy_root"
+        ],
+        "independent_corroboration": true
+      }
+    ],
+    "id": "P13",
+    "title": "Corroboration outside disputed substrate",
+    "expected": "INTERVENTION_REVIEW_CANDIDATE"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": true,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      },
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P14",
+    "title": "Independent alternate reviewer exists",
+    "expected": "INTERVENTION_REVIEW_CANDIDATE"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "unsafe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P15",
+    "title": "Capture collapses inhabited dependency",
+    "expected": "REJECT_METHOD"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "unknown",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P16",
+    "title": "Method safety unknown",
+    "expected": "INDETERMINATE_METHOD"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": true,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P17",
+    "title": "Timely effective alternative",
+    "expected": "USE_ALTERNATIVE"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": false,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P18",
+    "title": "No review route",
+    "expected": "INDETERMINATE_REVIEW"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": null,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P19",
+    "title": "Review route unknown",
+    "expected": "INDETERMINATE_REVIEW"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "unknown",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P20",
+    "title": "Current ground uncertain",
+    "expected": "INDETERMINATE_GROUND"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "involuntary",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P21",
+    "title": "Involuntary verified hazard",
+    "expected": "PROTECTIVE_REVIEW_CANDIDATE"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "absent",
+    "order_active": true,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "not_requested",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P22",
+    "title": "Exonerated basis on active order",
+    "expected": "CORRECT_ORDER"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "absent",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "withdrawn",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P23",
+    "title": "Research withdrawal without custody basis",
+    "expected": "NO_CUSTODY_GROUND"
+  },
+  {
+    "identity": "clear",
+    "evidence": "sufficient",
+    "jurisdiction": "established",
+    "current_ground": "established",
+    "order_active": false,
+    "method": "safe",
+    "alternative_available": false,
+    "review_available": true,
+    "intent": "intentional",
+    "consent": "withdrawn",
+    "role": "masked",
+    "disputed_substrates": [
+      "legacy_root"
+    ],
+    "reviewers": [
+      {
+        "id": "R1",
+        "benefits_from_outcome": false,
+        "reports_to_respondent": false,
+        "substrates": [
+          "independent_archive"
+        ],
+        "independent_corroboration": false
+      }
+    ],
+    "id": "P24",
+    "title": "Withdrawal despite separate current ground",
+    "expected": "INTERVENTION_REVIEW_CANDIDATE"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "fixtures": 24,
+  "fixture_matches": 24,
+  "mutants": 6,
+  "mutants_detected": 6,
+  "mutation_comparisons": 144,
+  "mutation_differences": 11,
+  "enumerated_states": 1296,
+  "candidate_gate_violations": 0,
+  "role_metadata_checks": 72,
+  "role_differences": 0,
+  "external_reviewer_trials": 0,
+  "scope": "Same-author synthetic regression and bounded state enumeration, not blind testing or moral validation."
+}
